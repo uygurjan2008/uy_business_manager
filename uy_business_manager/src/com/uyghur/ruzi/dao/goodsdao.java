@@ -1,6 +1,9 @@
 package com.uyghur.ruzi.dao;
 
 import java.sql.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class goodsdao {
 
@@ -55,38 +58,87 @@ public class goodsdao {
 
 	}
 
-	public goodsdao(String name, int price, String description) {
-
-		Connection conn = null;
-		String result = "";
-
+	
+	
+	public boolean insert(String name, int price, String description) {
+		
+		boolean succes=false;
+		String driver="com.mysql.jdbc.Driver";
+		String url = "jdbc:mysql://127.0.0.1:3306/goods";
+		username="root";
+		userpass="root";
+		
 		try {
-			Class.forName("com.mysql.jdbc");
-
-			String url = "mysql:jdbc:127.0.0.1/3306/goods";
-			username = "root";
-			userpass = "root";
-			conn = DriverManager.getConnection(url, username, userpass);
-			Statement stmt = conn.createStatement();
-			String sql = "INSERT INTO `goods_in` (`name`, `price`, `description`, `etc`) VALUES ('"
-					+ name + "', '" + price + "', '" + description + "', '')";
-			boolean rs = stmt.execute(sql);
-			if (rs == true) {
-
-				result = "in";
-
-			} else {
-
-				result = "no";
-
+			Class.forName(driver);
+			Connection conn=DriverManager.getConnection(url,username,userpass);
+			Statement stmt=conn.createStatement();
+			String sql="INSERT INTO `goods_in` (`name`, `price`, `description`) VALUES ('"+name+"', '"+price+"', '"+description+"')";
+			boolean rs=stmt.execute(sql);
+			if(rs==true){
+				succes=true;
+				System.out.println("next"+succes);
+				
 			}
+			else{
+				succes=false;
+				System.out.println("else"+succes);
+			}
+			
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
 
-		} catch (Exception e) {
-
-		} finally {
-
+			e.printStackTrace();
 		}
+		System.out.println("return "+succes);
+		return succes;
+		
+	}
+	
+	public Map<String, String> read() {
+
+		
+		
+		String driver="com.mysql.jdbc.Driver";
+		String url = "jdbc:mysql://127.0.0.1:3306/goods";
+		username="root";
+		userpass="root";
+		Map<String, String> map=new LinkedHashMap<String,String>(); 
+		
+		try {
+			Class.forName(driver);
+			Connection conn=DriverManager.getConnection(url,username,userpass);
+			Statement stmt=conn.createStatement();
+			String sql="SELECT * FROM `goods_in`";
+			ResultSet rs=stmt.executeQuery(sql);
+			System.out.println("sql"+sql);
+			
+			while(rs.next()){
+				
+				System.out.println("read data success");
+				map.put("name", rs.getString("name"));
+				map.put("price", rs.getString("price"));
+				map.put("description", rs.getString("description"));
+				
+				
+			}
+			
+			System.out.println("size:"+map.size()+",map:"+map.get("name"));
+			
+			
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+		System.out.println("map1.."+map.get("name"));
+		return map;
+		
+		
+		
 
 	}
+	
 
 }

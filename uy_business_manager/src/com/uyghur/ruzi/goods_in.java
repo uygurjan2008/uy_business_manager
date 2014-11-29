@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
+import com.uyghur.ruzi.dao.dbutils;
 import com.uyghur.ruzi.dao.goodsdao;
 
 public class goods_in {
@@ -40,47 +41,35 @@ public class goods_in {
 
 	public String execute() {
 		
-		 
+		 dbutils dbutils=new dbutils();
+		 String result = null;
+		boolean reString=dbutils.getConnection("admin", "123456");
+		
+		System.out.println("+++++++:"+reString);
+		 if(reString==true){
+			 System.out.println("authorized user");
 
-		Connection conn = null;
-		String result = "";
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-
-			String url = "jdbc:mysql://127.0.0.1:3306/goods";
-			
-
-			
-			username = "root";
-			userpass = "root";
-			
-			conn = DriverManager.getConnection(url, username, userpass);
-			Statement stmt = conn.createStatement();
-			String sql = "INSERT INTO `goods_in` (`name`, `price`, `description`, `etc`) VALUES ('"
-					+ name + "', '" + price + "', '" + description + "', '')";
-			System.out.println(sql);
-			boolean rs = stmt.execute(sql);
-			System.out.println(rs);
-			
-			if (rs == false) {
-
-				result = "in";
-
-			} else {
-
-				result = "else";
-
+			 goodsdao gd=new goodsdao();
+			boolean rs=gd.insert(name, price, description);
+			if (rs==false) {
+				result="in";
+			}else {
+				return "else";
 			}
-
-		} catch (Exception e) {
-
-		} finally {
-
-		}
+			
+			 System.out.println("ss"+rs);
+			 
+			
+			 
+			 
+			 
+		 }
+		 else{
+			 System.out.println("not authorized user");
+			 
+		 }
+		 
 		return result;
-
-	 
+	
 	}
-
 }
