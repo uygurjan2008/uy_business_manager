@@ -6,34 +6,39 @@
 <struts>
 
 	<!-- 配置 Struts 可以受理的请求的扩展名 -->
-	<!-- 
-	<constant name="struts.action.extension" value="action,do,"></constant>
-	-->
+	<!-- <constant name="struts.action.extension" value="action,do,"></constant> -->
 	<!-- 打开允许动态方法调用的开关, 默认是 false -->
-	<!-- 
-	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
-	-->
-    <package name="default" namespace="/" extends="struts-default">
+	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant> -->
+	<package name="default" namespace="/" extends="struts-default">
 
-		<action name="login" 
-			class="com.uyghur.ruzi.testAction">
-			<result  name="success">/admin/success.jsp</result>
-			<result  name="fail">/admin/fail.jsp</result>
-				
-		</action>   
+		<action name="login" class="com.uyghur.ruzi.testAction">
+			<result name="success">/admin/success.jsp</result>
+			<result name="fail">/admin/fail.jsp</result>
 
-				<action name="register" 
-			class="com.uyghur.ruzi.register">
-			<result  name="null">/admin/fail.jsp</result>
-			<result  name="notnul">/admin/success.jsp</result>
-			<result  name="ok">/admin/login.jsp</result>
-				
-		</action>   
+		</action>
+
+		<action name="register" class="com.uyghur.ruzi.register">
+			<result name="null">/admin/fail.jsp</result>
+			<result name="notnul">/admin/success.jsp</result>
+			<result name="ok">/admin/login.jsp</result>
+
+		</action>
 		
 		
+		<action name="goods_in" class="com.uyghur.ruzi.goods_in">
 		
+			<result name="in">/business/goods_in.jsp</result>
+			<result name="else">/business/goods_in.jsp</result>
 			
-    </package>
+		</action>
+		
+				
+		
+
+
+
+
+	</package>
 
 
 </struts>

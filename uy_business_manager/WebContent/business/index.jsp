@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-business index
+<form action="">
+
+</form>
 </body>
 </html>
