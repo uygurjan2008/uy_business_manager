@@ -20,7 +20,19 @@
 			<result  name="success">/admin/success.jsp</result>
 			<result  name="fail">/admin/fail.jsp</result>
 				
-		</action>   	
+		</action>   
+
+				<action name="register" 
+			class="com.uyghur.ruzi.register">
+			<result  name="null">/admin/fail.jsp</result>
+			<result  name="notnul">/admin/success.jsp</result>
+			<result  name="ok">/admin/login.jsp</result>
+				
+		</action>   
+		
+		
+		
+			
     </package>
 
 
