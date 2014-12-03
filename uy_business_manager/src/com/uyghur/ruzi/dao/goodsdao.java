@@ -1,8 +1,11 @@
 package com.uyghur.ruzi.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class goodsdao {
@@ -13,6 +16,7 @@ public class goodsdao {
 	private String name;
 	private int price;
 	private String description;
+	private int index;
 
 	public String getUserpass() {
 		return userpass;
@@ -58,87 +62,92 @@ public class goodsdao {
 
 	}
 
-	
-	
 	public boolean insert(String name, int price, String description) {
-		
-		boolean succes=false;
-		String driver="com.mysql.jdbc.Driver";
+
+		boolean succes = false;
+		String driver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://127.0.0.1:3306/goods";
-		username="root";
-		userpass="root";
-		
+		username = "root";
+		userpass = "root";
+
 		try {
 			Class.forName(driver);
-			Connection conn=DriverManager.getConnection(url,username,userpass);
-			Statement stmt=conn.createStatement();
-			String sql="INSERT INTO `goods_in` (`name`, `price`, `description`) VALUES ('"+name+"', '"+price+"', '"+description+"')";
-			boolean rs=stmt.execute(sql);
-			if(rs==true){
-				succes=true;
-				System.out.println("next"+succes);
-				
+			Connection conn = DriverManager.getConnection(url, username,
+					userpass);
+			Statement stmt = conn.createStatement();
+			String sql = "INSERT INTO `goods_in` (`name`, `price`, `description`) VALUES ('"
+					+ name + "', '" + price + "', '" + description + "')";
+			boolean rs = stmt.execute(sql);
+			if (rs == true) {
+				succes = true;
+				System.out.println("next" + succes);
+
+			} else {
+				succes = false;
+				System.out.println("else" + succes);
 			}
-			else{
-				succes=false;
-				System.out.println("else"+succes);
-			}
-			
-			
-			
+
 		} catch (ClassNotFoundException | SQLException e) {
 
 			e.printStackTrace();
 		}
-		System.out.println("return "+succes);
+		System.out.println("return " + succes);
 		return succes;
-		
-	}
-	
-	public Map<String, String> read() {
 
-		
-		
-		String driver="com.mysql.jdbc.Driver";
+	}
+
+	public List<Map> read() {
+
+		String driver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://127.0.0.1:3306/goods";
-		username="root";
-		userpass="root";
-		Map<String, String> map=new LinkedHashMap<String,String>(); 
-		
+		username = "root";
+		userpass = "root";
+		Map<String, String> map = new LinkedHashMap<String, String>();
+		ArrayList<Map> list = new ArrayList<Map>();
+		ArrayList<Object> list2 = new ArrayList<Object>();
+		String[] a=null;
 		try {
 			Class.forName(driver);
-			Connection conn=DriverManager.getConnection(url,username,userpass);
-			Statement stmt=conn.createStatement();
-			String sql="SELECT * FROM `goods_in`";
-			ResultSet rs=stmt.executeQuery(sql);
-			System.out.println("sql"+sql);
-			
-			while(rs.next()){
+			Connection conn = DriverManager.getConnection(url, username,
+					userpass);
+			Statement stmt = conn.createStatement();
+			String sql = "SELECT * FROM `goods_in`";
+			ResultSet rs = stmt.executeQuery(sql);
+			System.out.println("sql" + sql);
+			index=0;
+			while (rs.next()) {
 				
-				System.out.println("read data success");
+				
 				map.put("name", rs.getString("name"));
 				map.put("price", rs.getString("price"));
 				map.put("description", rs.getString("description"));
-				
+				list.add(index, map);
+			
+				index++;
 				
 			}
-			
-			System.out.println("size:"+map.size()+",map:"+map.get("name"));
-			
-			
-			
-			
+
 		} catch (ClassNotFoundException | SQLException e) {
 
 			e.printStackTrace();
 		}
-		System.out.println("map1.."+map.get("name"));
-		return map;
+
+		for (int i = 0; i < list.size(); i++) {
+			
+			System.out.println(i + "," + list.get(i));
+			
+		}
+		
+		 
+		 
+		  
 		
 		
 		
+		
+		
+		return list;
 
 	}
-	
 
 }

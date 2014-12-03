@@ -1,3 +1,4 @@
+<%@page import="java.util.LinkedHashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.uyghur.ruzi.dao.goodsdao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -28,35 +29,31 @@
 	</div>
 	</div>
 	
-	<%
-	goodsdao gd=new goodsdao();
-	Map<String,String> map=gd.read();		
-			
-	%>
-	name:<%=map.get("name") %>
-	length:<%=map.size() %>
-	<%
 	
-	for(int i=0;i<map.size();i++)
-	{
-		%>
-		
+	
 		<div>
 	<div align="center" style="width: 120px;float:left;border-right:1px solid;"> 
-	<label for=""><%=map.get("name") %></label>
+	<label for=""></label>
 	 </div> 
 	 <div align="center" style="width: 120px;float:left;border-right:1px solid;"> 
-	<label for=""><%=map.get("price") %></label>
+	<label for=""></label>
 	  </div>
 	  <div align="center" style="width: 120px;float:left;"> 
-	<label for=""><%=map.get("description") %></label>
+	<label for=""></label>
 	</div></div>
 	
 		
-		<%
-	}
+	<%
+	goodsdao gd=new goodsdao();
+		gd.read();
+			
+			Map<String,String> map=new LinkedHashMap<String,String>();
+			map.put("name", "okoko");
+			
+			
+			
 	%>
-	
+	map:<%=map.get("name") %>
 	
 	
 </body>

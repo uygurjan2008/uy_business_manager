@@ -11,9 +11,6 @@ public class goods_in {
 	private String name;
 	private int price;
 	private String description;
-	private String username;
-	private String userpass;
-	
 
 	public String getName() {
 		return name;
@@ -40,36 +37,30 @@ public class goods_in {
 	}
 
 	public String execute() {
-		
-		 dbutils dbutils=new dbutils();
-		 String result = null;
-		boolean reString=dbutils.getConnection("admin", "123456");
-		
-		System.out.println("+++++++:"+reString);
-		 if(reString==true){
-			 System.out.println("authorized user");
 
-			 goodsdao gd=new goodsdao();
-			boolean rs=gd.insert(name, price, description);
-			if (rs==false) {
-				result="in";
-			}else {
-				return "else";
+		dbutils dbutils = new dbutils();
+		String result = null;
+		boolean reString = dbutils.getConnection("admin", "123456");
+
+		System.out.println("+++++++:" + reString);
+		if (reString == true) {
+			System.out.println("authorized user");
+
+			goodsdao gd = new goodsdao();
+			boolean rs = gd.insert(name, price, description);
+			if (rs == false) {
+				result = "in";
+			} else {
+				result = "else";
 			}
+
+		} else {
 			
-			 System.out.println("ss"+rs);
-			 
-			
-			 
-			 
-			 
-		 }
-		 else{
-			 System.out.println("not authorized user");
-			 
-		 }
-		 
+			System.out.println("not authorized user");
+
+		}
+		System.out.println("result..."+result);
 		return result;
-	
+
 	}
 }

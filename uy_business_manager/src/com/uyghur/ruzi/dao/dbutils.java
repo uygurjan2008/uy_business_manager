@@ -28,9 +28,11 @@ public class dbutils {
 			Class.forName(driver);
 			Connection conn=DriverManager.getConnection(url,username,userpass);
 			Statement stmt=conn.createStatement();
-			String sql="select * from dbusers where uname='"+uname+"' and upass='"+upass+"'";
+			String sql="select * from dbusers where username='"+uname+"' and userpass='"+upass+"'";
+			System.out.println(sql);
 			ResultSet rs=stmt.executeQuery(sql);
 			if(rs.next()){
+				
 				succes=true;
 				System.out.println("next"+succes);
 				
