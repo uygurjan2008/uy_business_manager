@@ -10,9 +10,7 @@ public class dbutils {
 
 	Connection conn = null;
 
-	public dbutils() {
-		
-		
+	public dbutils() {		
 		
 	}
 	
@@ -20,13 +18,11 @@ public class dbutils {
 		
 		boolean succes=false;
 		String driver="com.mysql.jdbc.Driver";
-		url = "jdbc:mysql://127.0.0.1:3306/goods";
-		username="root";
-		userpass="root";
-		
+		dbconnection db=new dbconnection();
+		System.out.println(db.getconnection());
 		try {
 			Class.forName(driver);
-			Connection conn=DriverManager.getConnection(url,username,userpass);
+			Connection conn=DriverManager.getConnection(db.getconnection());
 			Statement stmt=conn.createStatement();
 			String sql="select * from dbusers where username='"+uname+"' and userpass='"+upass+"'";
 			System.out.println(sql);

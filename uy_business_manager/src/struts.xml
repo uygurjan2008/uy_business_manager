@@ -11,9 +11,9 @@
 	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant> -->
 	<package name="default" namespace="/admin" extends="struts-default">
 
-		<action name="login" class="com.uyghur.ruzi.testAction">
-			<result name="success">/admin/success.jsp</result>
-			<result name="fail">/admin/fail.jsp</result>
+		<action name="login" class="com.uyghur.ruzi.adminlogin">
+			<result name="success">/admin/adminhome.jsp</result>
+			<result name="fail">/admin/login.jsp</result>
 
 		</action>
 
