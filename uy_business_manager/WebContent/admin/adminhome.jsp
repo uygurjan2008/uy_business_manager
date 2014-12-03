@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div style="background:url('img/1.jpg');width:100%;height:100%;">
+<div style="background:url('../img/1.jpg');width:100%;height:850px;">
 	
 	AAAAAAAAAAAAAAAAAAA
 	Admin:<%=session.getAttribute("admin") %>
