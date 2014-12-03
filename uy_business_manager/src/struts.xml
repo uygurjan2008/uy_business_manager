@@ -39,6 +39,14 @@
 			
 		</action>
 		
+		
+	<action name="goods_read" class="com.uyghur.ruzi.dao.goodsdao" method="read" >
+		
+			<result>/business/goods_in.jsp</result>
+			
+		</action>
+		
+		
 	
 	</package>
 

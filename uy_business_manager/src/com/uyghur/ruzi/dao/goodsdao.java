@@ -8,15 +8,26 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class goodsdao {
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.RequestAware;
+
+import com.opensymphony.xwork2.ActionContext;
+
+
+
+
+public class 	goodsdao  implements RequestAware{
 
 	private String userpass;
 	private String username;
 
 	private String name;
-	private int price;
+	private String price;
 	private String description;
 	private int index;
+	private Map<String, Object> requestMap;
 
 	public String getUserpass() {
 		return userpass;
@@ -42,12 +53,12 @@ public class goodsdao {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(String string) {
+		this.price = string;
 	}
 
 	public String getDescription() {
@@ -96,16 +107,16 @@ public class goodsdao {
 
 	}
 
-	public List<Map> read() {
+	public String read() {
 
 		String driver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://127.0.0.1:3306/goods";
 		username = "root";
 		userpass = "root";
-		Map<String, String> map = new LinkedHashMap<String, String>();
-		ArrayList<Map> list = new ArrayList<Map>();
-		ArrayList<Object> list2 = new ArrayList<Object>();
-		String[] a=null;
+		
+		List<goodsdao> goods=new ArrayList<goodsdao>();
+		
+		
 		try {
 			Class.forName(driver);
 			Connection conn = DriverManager.getConnection(url, username,
@@ -114,40 +125,42 @@ public class goodsdao {
 			String sql = "SELECT * FROM `goods_in`";
 			ResultSet rs = stmt.executeQuery(sql);
 			System.out.println("sql" + sql);
-			index=0;
+		 
 			while (rs.next()) {
 				
+				goodsdao gd=new goodsdao();
+				gd.setName(rs.getString("name"));
+				gd.setPrice(rs.getString("price"));
+				gd.setDescription(rs.getString("description"));
+				//System.out.println(rs.getString("name")+","+rs.getString("price")+","+rs.getString("description"));
+				System.out.println(gd+","+gd.name);
+				goods.add(gd);
 				
-				map.put("name", rs.getString("name"));
-				map.put("price", rs.getString("price"));
-				map.put("description", rs.getString("description"));
-				list.add(index, map);
-			
-				index++;
-				
+
+
 			}
 
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (Exception  e) {
 
 			e.printStackTrace();
 		}
 
-		for (int i = 0; i < list.size(); i++) {
-			
-			System.out.println(i + "," + list.get(i));
-			
-		}
 		
-		 
-		 
-		  
+		
+		requestMap.put("goods", goods);
+//		ActionContext.getContext().getValueStack().push(goods);
 		
 		
 		
 		
-		
-		return list;
+		return "success";
 
+	}
+
+	@Override
+	public void setRequest(Map<String, Object> requestMap) {
+		this.requestMap = requestMap;
+		
 	}
 
 }
