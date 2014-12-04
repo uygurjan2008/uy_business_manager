@@ -128,7 +128,7 @@ public String read() {
 				gd.setGoodname(rs.getString("name"));
 				gd.setGoodprice(rs.getString("price"));
 				gd.setGoodpic(rs.getString("pic"));
-				System.out.println(gd+","+gd.goodname);
+				System.out.println(gd.goodname+","+gd.goodprice+","+gd.goodpic);
 				goods.add(gd);
 				
 
@@ -143,7 +143,7 @@ public String read() {
 		
 		
 
-		
+		System.out.println("my cart out ....mycart");
 		requestMap.put("mycart", goods);
 //		ActionContext.getContext().getValueStack().push(goods);
 		

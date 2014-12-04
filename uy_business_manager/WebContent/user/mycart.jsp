@@ -15,53 +15,27 @@
 
 
 </head>
-<body onload="">
+<body>
+
+<div>
 
 
-	<div align="center">
-	</div>
-	<div align="center" style="float: left; margin-left: 10%;">
+	<s:iterator value="#request.mycart">
 		<div align="center">
+			<div align="center" style="border: 1px solid;">
+				<tr>
+					<td><s:property value="goodname" /></td>
+					<td><s:property value="goodprice" /></td>
+					<td><s:property value="goodpic" /></td>
+					<td><a class="btn btn-info">edit</a></td>
+					<td><a class="btn btn-danger">delete</a></td>
 
-			<div align="center">
-
-
-				<s:iterator value="#request.mycart">
-
-					<div style="float: left;">
-
-						<div class="ok" id='<s:property value="name" />'>
-							
-							
-							
-							<img name="goodpic" id="pic" src='<s:property value="pic" />'
-									width="300px" height="100px">
-								<p>
-									<label for="" id="name" name="goodname"><s:property
-											value="name" /> </label>|<label for="" id="price" name="goodprice">
-										<s:property value="price" />
-									</label>
-								</p>
-							 
-
-						
-						</div>
-
-
-
-					</div>
-
-
-
-				</s:iterator>
-
+				</tr>
 			</div>
-
-
-
 		</div>
 
-	</div>
+	</s:iterator>
+</div>
 
 
 </body>
