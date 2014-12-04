@@ -131,7 +131,7 @@ public class 	goodsdao  implements RequestAware{
 				gd.setName(rs.getString("name"));
 				gd.setPrice(rs.getString("price")); 
 				gd.setPic(rs.getString("pic"));
-				System.out.println("pic:"+gd.pic);
+				//System.out.println("pic:"+gd.pic);
 				goods.add(gd);
 				
 

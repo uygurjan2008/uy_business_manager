@@ -13,14 +13,14 @@
 	<package name="name1" namespace="/" extends="struts-default">
 
 
-		<default-action-ref name="index" /><!-- 默认action -->
+		<default-action-ref name="read" /><!-- 默认action -->
 
 
-		<action name="index" class="com.uyghur.ruzi.dao.goodsdao"
+		<action name="index.jsp" class="com.uyghur.ruzi.dao.goodsdao"
 			method="read">
 			<result>/index.jsp</result>
 		</action>
-		<action name="index.jsp" class="com.uyghur.ruzi.dao.goodsdao"
+		<action name="read" class="com.uyghur.ruzi.dao.goodsdao"
 			method="read">
 			<result>/index.jsp</result>
 			
@@ -78,7 +78,7 @@
 		<action name="usercart" class="com.uyghur.ruzi.dao.userdao"
 			method="usercart">
 
-			<result name="success">index.jsp</result>
+			<result name="success" type="redirect">/</result>
 
 		</action>
 			
@@ -86,7 +86,7 @@
 		<action name="AAA" class="com.uyghur.ruzi.dao.userdao"
 			method="usercarts">
 
-			<result name="success" type="redirect">/read</result>
+			<result name="success" type="redirect">/</result>
 	
 		</action>
 		

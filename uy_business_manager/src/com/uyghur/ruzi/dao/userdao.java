@@ -161,10 +161,10 @@ public String read() {
 	
 	
 	
-	public String usercart(String goodname,String goodprice,String goodpic)
+	public String usercart()
 	{
-		
-		System.out.println(goodname+","+goodprice+","+goodpic);
+	
+		System.out.println(this.getGoodname());
 		
 		return "success";
 		
