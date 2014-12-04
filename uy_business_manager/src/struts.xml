@@ -9,44 +9,28 @@
 	<!-- <constant name="struts.action.extension" value="action,do,"></constant> -->
 	<!-- 打开允许动态方法调用的开关, 默认是 false -->
 	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant> -->
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<package name="name1" namespace="/" extends="struts-default">
-	
 
-	
-		
-	<action name="read" class="com.uyghur.ruzi.dao.goodsdao" method="read" >
-		
+	<package name="name1" namespace="/" extends="struts-default">
+
+
+		<default-action-ref name="index" /><!-- 默认action -->
+
+
+		<action name="index" class="com.uyghur.ruzi.dao.goodsdao"
+			method="read">
+			<result>/index.jsp</result>
+		</action>
+		<action name="index.jsp" class="com.uyghur.ruzi.dao.goodsdao"
+			method="read">
 			<result>/index.jsp</result>
 			
-	</action>
+		</action>
 		
-		
+		</package>
 	
-	</package>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<package name="default" namespace="/admin" extends="struts-default">
+
+
+	<package name="admin" namespace="/admin" extends="struts-default">
 
 		<action name="login" class="com.uyghur.ruzi.adminlogin">
 			<result name="success">/admin/adminhome.jsp</result>
@@ -60,58 +44,69 @@
 			<result name="ok">/admin/login.jsp</result>
 
 		</action>
-		
-		
-		
-		
+
+
+
+
 
 	</package>
-	
+
 	<package name="business" namespace="/business" extends="struts-default">
-	
-	<action name="goods_in" class="com.uyghur.ruzi.goods_in">
-		
+
+		<action name="goods_in" class="com.uyghur.ruzi.goods_in">
+
 			<result name="in">/business/goods_in.jsp</result>
 			<result name="else">/business/goods_in.jsp</result>
-			
-		</action>
-		
-		
-	<action name="goods_read" class="com.uyghur.ruzi.dao.goodsdao" method="read" >
-		
-			<result>/business/goods_in.jsp</result>
-			
-		</action>
-		
-		
-	
-	</package>
-	
-	
-	<package name="user" namespace="/user" extends="struts-default">
-	
-	<action name="mycart" class="com.uyghur.ruzi.dao.userdao">
-		
-			<result name="success" type="redirect">cart_read</result>
-			<result name="fail" >/user/mycart.jsp</result>
-			
 
 		</action>
-		
-		
-	<action name="cart_read" class="com.uyghur.ruzi.dao.userdao" method="read" >
-		
-			<result>/user/mycart.jsp</result>
+
+
+		<action name="goods_read" class="com.uyghur.ruzi.dao.goodsdao"
+			method="read">
+
+			<result>/business/goods_in.jsp</result>
+
+		</action>
+
+
+
+	</package>
+
+
+	<package name="user" namespace="/user" extends="struts-default">
+
+		<action name="usercart" class="com.uyghur.ruzi.dao.userdao"
+			method="usercart">
+
+			<result name="success">index.jsp</result>
+
+		</action>
 			
+			
+		<action name="AAA" class="com.uyghur.ruzi.dao.userdao"
+			method="usercarts">
+
+			<result name="success" type="redirect">/read</result>
+	
 		</action>
 		
+					
 		
-	
+		
+		<action name="cart_read" class="com.uyghur.ruzi.dao.userdao"
+			method="read">
+
+			<result>/user/mycart.jsp</result>
+
+		</action>
+
+
+
 	</package>
-	
-	
-	
-	
+
+
+
+
 
 
 </struts>

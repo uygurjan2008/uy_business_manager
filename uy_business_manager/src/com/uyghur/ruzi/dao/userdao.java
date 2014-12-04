@@ -158,4 +158,32 @@ public String read() {
 		this.requestMap = requestMap;
 		
 	}
+	
+	
+	
+	public String usercart(String goodname,String goodprice,String goodpic)
+	{
+		
+		System.out.println(goodname+","+goodprice+","+goodpic);
+		
+		return "success";
+		
+	}
+	
+	public String usercarts()
+	{
+		String result=null;
+		result="success";
+
+		System.out.println(result);
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+
+	
 }

@@ -1,3 +1,4 @@
+ 
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
@@ -13,7 +14,7 @@
 
 
 </head>
-<body>
+<body onload="">
 	
 	
 	<div align="center">
@@ -26,13 +27,13 @@
 	<div align="center">
 
 
-<s:iterator value="#request.goods">
-
+<s:iterator value="#request.goodss">
+	
 		<div style="float: left;">
 
-			<div class="ok" id="<s:property value="name" />">
-
-				<img id="pic" src="<s:property value="pic" />" width="300px" height="100px">
+			<div class="ok" id='<s:property value="name" />'>
+	
+				<img id="pic" src='<s:property value="pic" />' width="300px" height="100px">
 				<p>
 					<label for="" id="name"><s:property value="name" /> 
 					</label>|<label for="" id="price">
@@ -40,7 +41,7 @@
 				</p>
 
 
-				<a href="/user/usercart?name=<s:property value="name" />&price=<s:property value="price" />&pic=<s:property value="pic" />"
+				<a href="user/usercart?goodname=<s:property value="name" />&goodprice=<s:property value="price" />&goodpic=<s:property value="pic" />"
 					class="btn btn-info">加入购物车</a>
 
 
@@ -61,13 +62,7 @@
 </div>
 
 </div>
-<s:iterator value="#request.mycart" >
-			
-			<div class=""><s:property value="Goodname" /></div>
-			<div class=""><s:property value="Goodprice" /></div>
-			<div class=""><s:property value="Goodpic" /></div>
-			
-	</s:iterator>
+
 
 </body>
 </html>

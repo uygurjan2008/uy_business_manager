@@ -28,7 +28,17 @@ public class 	goodsdao  implements RequestAware{
 	private String name;
 	private String price;
 	private String pic;
-	private int index;
+	
+
+
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+
 	private Map<String, Object> requestMap;
 
 	public String getUserpass() {
@@ -63,14 +73,8 @@ public class 	goodsdao  implements RequestAware{
 		this.price = string;
 	}
 
-	public String getpic() {
-		return pic;
-	}
-
-	public void setpic(String pic) {
-		this.pic = pic;
-	}
-
+	 
+ 
 	public goodsdao() {
 
 	}
@@ -101,7 +105,7 @@ public class 	goodsdao  implements RequestAware{
 
 			e.printStackTrace();
 		}
-		System.out.println("return " + succes);
+		
 		return succes;
 
 	}
@@ -119,15 +123,15 @@ public class 	goodsdao  implements RequestAware{
 			Statement stmt = conn.createStatement();
 			String sql = "SELECT * FROM `goods`";
 			ResultSet rs = stmt.executeQuery(sql);
-			System.out.println("sql" + sql);
+			
 		 
 			while (rs.next()) {
 				
 				goodsdao gd=new goodsdao();
 				gd.setName(rs.getString("name"));
-				gd.setPrice(rs.getString("price"));
-				gd.setpic(rs.getString("pic"));
-				System.out.println(gd+","+gd.name);
+				gd.setPrice(rs.getString("price")); 
+				gd.setPic(rs.getString("pic"));
+				System.out.println("pic:"+gd.pic);
 				goods.add(gd);
 				
 
@@ -139,10 +143,9 @@ public class 	goodsdao  implements RequestAware{
 			e.printStackTrace();
 		}
 
-		
-		
-		requestMap.put("goods", goods);
-//		ActionContext.getContext().getValueStack().push(goods);
+
+
+		requestMap.put("goodss", goods);
 		
 		
 		
