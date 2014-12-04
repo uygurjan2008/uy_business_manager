@@ -1,80 +1,80 @@
 package com.uyghur.ruzi.dao;
 
+import db.Dbdriver;
+
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 
 import com.opensymphony.xwork2.ActionContext;
-
-import db.Dbdriver;
-
-
-
-
-public class 	goodsdao  implements RequestAware{
-
-	private String userpass;
+/**
+ * @author admin
+ *
+ */
+public class userdao implements RequestAware{
+	
 	private String username;
-
-	private String name;
-	private String price;
-	private String pic;
-	private int index;
+	private String goodname;
+	private String goodprice;
+	private String goodpic;
 	private Map<String, Object> requestMap;
-
-	public String getUserpass() {
-		return userpass;
-	}
-
-	public void setUserpass(String userpass) {
-		this.userpass = userpass;
-	}
-
 	public String getUsername() {
 		return username;
 	}
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-	public String getName() {
-		return name;
+	public String getGoodname() {
+		return goodname;
+	}
+	public void setGoodname(String goodname) {
+		this.goodname = goodname;
+	}
+	public String getGoodprice() {
+		return goodprice;
+	}
+	public void setGoodprice(String goodprice) {
+		this.goodprice = goodprice;
+	}
+	public String getGoodpic() {
+		return goodpic;
+	}
+	public void setGoodpic(String goodpic) {
+		this.goodpic = goodpic;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String execute() {
+		
+		String success=null;
+		Dbdriver db=new Dbdriver();
+		try {
+			Class.forName(db.driver());
+			Connection conn=db.getConn();
+			String sql="";
+			Statement stmt=conn.createStatement();
+			boolean rs=stmt.execute(sql);
+			if(rs==false)
+			{
+				success="succes";
+			}else
+			{
+				success="fail";
+				
+			}
+			
+		} catch (Exception e) {
+			
+		}
+		
+		
+		
+		return success;
 	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String string) {
-		this.price = string;
-	}
-
-	public String getpic() {
-		return pic;
-	}
-
-	public void setpic(String pic) {
-		this.pic = pic;
-	}
-
-	public goodsdao() {
-
-	}
-
+	
+	
 	public boolean insert(String name, int price, String pic) {
 
 		boolean succes = false;
@@ -105,12 +105,13 @@ public class 	goodsdao  implements RequestAware{
 		return succes;
 
 	}
-
-	public String read() {
+	
+	
+public String read() {
 
 		
 		
-		List<goodsdao> goods=new ArrayList<goodsdao>();
+		List<userdao> goods=new ArrayList<userdao>();
 		Dbdriver db=new Dbdriver();
 		
 		try {
@@ -123,11 +124,11 @@ public class 	goodsdao  implements RequestAware{
 		 
 			while (rs.next()) {
 				
-				goodsdao gd=new goodsdao();
-				gd.setName(rs.getString("name"));
-				gd.setPrice(rs.getString("price"));
-				gd.setpic(rs.getString("pic"));
-				System.out.println(gd+","+gd.name);
+				userdao gd=new userdao();
+				gd.setGoodname(rs.getString("name"));
+				gd.setGoodprice(rs.getString("price"));
+				gd.setGoodpic(rs.getString("pic"));
+				System.out.println(gd+","+gd.goodname);
 				goods.add(gd);
 				
 
@@ -141,7 +142,9 @@ public class 	goodsdao  implements RequestAware{
 
 		
 		
-		requestMap.put("goods", goods);
+
+		
+		requestMap.put("mycart", goods);
 //		ActionContext.getContext().getValueStack().push(goods);
 		
 		
@@ -151,10 +154,8 @@ public class 	goodsdao  implements RequestAware{
 
 	}
 
-	@Override
 	public void setRequest(Map<String, Object> requestMap) {
 		this.requestMap = requestMap;
 		
 	}
-
 }

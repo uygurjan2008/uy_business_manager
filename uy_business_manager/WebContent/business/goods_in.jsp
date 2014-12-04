@@ -56,7 +56,9 @@ aa
 <s:iterator value="#request.goods" >
 			
 			<div class=""><s:property value="name" /></div>
-		
+			<div class=""><s:property value="price" /></div>
+			<div class=""><s:property value="pic" /></div>
+			
 	</s:iterator>
 aa
 

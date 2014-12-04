@@ -9,6 +9,43 @@
 	<!-- <constant name="struts.action.extension" value="action,do,"></constant> -->
 	<!-- 打开允许动态方法调用的开关, 默认是 false -->
 	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant> -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<package name="name1" namespace="/" extends="struts-default">
+	
+
+	
+		
+	<action name="read" class="com.uyghur.ruzi.dao.goodsdao" method="read" >
+		
+			<result>/index.jsp</result>
+			
+	</action>
+		
+		
+	
+	</package>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<package name="default" namespace="/admin" extends="struts-default">
 
 		<action name="login" class="com.uyghur.ruzi.adminlogin">
@@ -49,6 +86,32 @@
 		
 	
 	</package>
+	
+	
+	<package name="user" namespace="/user" extends="struts-default">
+	
+	<action name="mycart" class="com.uyghur.ruzi.dao.userdao">
+		
+			<result name="success" type="redirect">cart_read</result>
+			<result name="fail" >/user/mycart.jsp</result>
+			
+
+		</action>
+		
+		
+	<action name="cart_read" class="com.uyghur.ruzi.dao.userdao" method="read" >
+		
+			<result>/user/mycart.jsp</result>
+			
+		</action>
+		
+		
+	
+	</package>
+	
+	
+	
+	
 
 
 </struts>

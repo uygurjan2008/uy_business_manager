@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import com.opensymphony.xwork2.ActionContext;
 import com.uyghur.ruzi.dao.dbconnection;
 
+import db.Dbdriver;
+
 public class adminlogin {
 	private String username;
 	private String password;
@@ -33,14 +35,16 @@ public class adminlogin {
 	}
 
 	public String checkadmin(String username, String password) {
-		dbconnection db = new dbconnection();
+		
 		String exist = "";
-		System.out.println("this side "+db.getconnection());
+		
+		 Dbdriver db=new Dbdriver();
+		
 		try {
 			Class.forName(db.driver());
 			
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/goods","root","root");
-			String sql = "select * from dbusers where username='"+username+"' and userpass='"+password+"'";
+			Connection conn = db.getConn();
+			String sql = "select * from admin where username='"+username+"' and userpass='"+password+"'";
 			Statement stmt = conn.createStatement();
 			System.out.println("sql"+sql);
 			ResultSet rs = stmt.executeQuery(sql);
@@ -66,7 +70,7 @@ public class adminlogin {
 			Map<String, Object> session =  ActionContext.getContext()
 					.getSession();
 			session.put("admin", username);
-			System.out.println("ses"+session.get("admin"));
+			System.out.println("username:"+session.get("admin"));
 			
 			
 		} else {

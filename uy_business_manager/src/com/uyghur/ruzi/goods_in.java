@@ -10,12 +10,12 @@ import com.uyghur.ruzi.dao.goodsdao;
 public class goods_in {
 	private String name;
 	private int price;
-	private String description;
+	private String pic;
 
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -28,26 +28,26 @@ public class goods_in {
 		this.price = price;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getpic() {
+		return pic;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setpic(String pic) {
+		this.pic = pic;
 	}
 
 	public String execute() {
 
-		dbutils dbutils = new dbutils();
+		
 		String result = null;
-		boolean reString = dbutils.getConnection("admin", "123456");
+		boolean reString =true;
 
 		System.out.println("+++++++:" + reString);
 		if (reString == true) {
 			System.out.println("authorized user");
 
 			goodsdao gd = new goodsdao();
-			boolean rs = gd.insert(name, price, description);
+			boolean rs = gd.insert(name, price, pic);
 			if (rs == false) {
 				result = "in";
 			} else {
