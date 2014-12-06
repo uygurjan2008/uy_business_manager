@@ -2,15 +2,20 @@ package com.uyghur.ruzi.dao;
 
 import db.Dbdriver;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -232,7 +237,7 @@ public String read() {
 	
 	
 
-	 public static JSONObject readJson() {
+	 public static JSONObject readJson() throws Exception {
 
 	        // JSON格式数据解析对象
 	        JSONObject jo = new JSONObject();
@@ -262,13 +267,42 @@ public String read() {
 	        
 	        
 	        
-	        return jo;
+	       
+	        HttpServletResponse response=ServletActionContext.getResponse();
+	      
+	        response.setContentType("text/json");
+	        PrintWriter out = null;
+	        try {
+				out = response.getWriter();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        //将要被返回到客户端的对象
+	        
+	       out.println(jo.toString());
+	       out.flush();
+	        
+	      System.out.println(response.isCommitted());
+	        if(response.isCommitted()==true){
+	        	System.out.println("in true");
+	        	out.close();
+	        }
+	        out.close();
+	        return jo;//jo;
+	        
+	        
+	        
+	        
+	        
+	        
+	        
 	        
 	    }
 	 
 	 
 	 
-	 public String readjson_success(){
+	 public String readjson_success() throws Exception{
 		 String result="";
 		 if(readJson().size()>0)
 		 {

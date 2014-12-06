@@ -64,7 +64,7 @@
 		<action name="goods_read" class="com.uyghur.ruzi.dao.goodsdao"
 			method="read">
 
-			<result type="json">/business/goods_in.jsp</result>
+			<result>/business/goods_in.jsp</result>
 
 		</action>
 
@@ -100,12 +100,10 @@
 
 		</action>
 
-				<action name="read_json" class="com.uyghur.ruzi.dao.userdao"
+			
+		<action name="json_read" class="com.uyghur.ruzi.dao.userdao"
 			method="readJson">
-
-			 
 		</action>
-		
 		
 				
 
