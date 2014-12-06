@@ -138,6 +138,7 @@ public String read() {
 				gd.setGoodprice(rs.getString("price"));
 				gd.setGoodpic(rs.getString("pic"));
 				System.out.println(gd.goodname+","+gd.goodprice+","+gd.goodpic);
+				
 				goods.add(gd);
 				
 
@@ -156,8 +157,15 @@ public String read() {
 		requestMap.put("mycart", goods);
 //		ActionContext.getContext().getValueStack().push(goods);
 		
-		
-		
+		 JSONArray ja3 = JSONArray.fromObject(goods);
+	        
+	       // JSONObject jso=JSONObject.fromObject(l1);
+	       
+	        // 将Bean转换为JSONArray数据
+
+	        System.out.println("JSONArray对象数据格式：");
+	        System.out.println(ja3.toString());
+
 		
 		return "success";
 
@@ -236,87 +244,12 @@ public String read() {
 	}
 	
 	
-
-	 public static JSONObject readJson() throws Exception {
-
-	        // JSON格式数据解析对象
-	        JSONObject jo = new JSONObject();
-	        
-	        
-	        List l1=rd();
-	       
-
-	        
-	        JSONArray ja3 = JSONArray.fromObject(l1);
-	        
-	        // 将Bean转换为JSONArray数据
-
-	        System.out.println("JSONArray对象数据格式：");
-	        
-	        System.out.println(ja3.toString());
-
-	        // 构造Json数据，包括一个map和一个Employee对象
-	        jo.put("items", ja3);
-	        jo.put("info", "json_test");
-	        jo.put("success", true);
-	        jo.put("tablename", "userinfo");
-	        
-	        System.out.println("\n最终构造的JSON数据格式：");
-	        System.out.println(jo.toString());
-	        
-	        
-	        
-	        
-	       
-	        HttpServletResponse response=ServletActionContext.getResponse();
-	      
-	        response.setContentType("text/json");
-	        PrintWriter out = null;
-	        try {
-				out = response.getWriter();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        //将要被返回到客户端的对象
-	        
-	       out.println(jo.toString());
-	       out.flush();
-	        
-	      System.out.println(response.isCommitted());
-	        if(response.isCommitted()==true){
-	        	System.out.println("in true");
-	        	out.close();
-	        }
-	        out.close();
-	        return jo;//jo;
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	    }
-	 
-	 
-	 
-	 public String readjson_success() throws Exception{
-		 String result="";
-		 if(readJson().size()>0)
-		 {
-			 result="success";
-		 }
-		 else
-		 {
-			 result="fail";
-		 }
-		 return result;
-	 
-	 }
+	
 	
 	
 
 	
 }
+
+ 
+

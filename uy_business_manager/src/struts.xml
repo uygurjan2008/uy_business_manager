@@ -23,11 +23,11 @@
 		<action name="read" class="com.uyghur.ruzi.dao.goodsdao"
 			method="read">
 			<result>/index.jsp</result>
-			
+
 		</action>
-		
-		</package>
-	
+
+	</package>
+
 
 
 	<package name="admin" namespace="/admin" extends="struts-default">
@@ -73,7 +73,7 @@
 	</package>
 
 
-	<package name="user" namespace="/user" extends="struts-default">
+	<package name="user" namespace="/user" extends="json-default">
 
 		<action name="usercart" class="com.uyghur.ruzi.dao.userdao"
 			method="usercart">
@@ -81,18 +81,17 @@
 			<result name="success" type="redirect">/</result>
 
 		</action>
-			
-			
-		<action name="AAA" class="com.uyghur.ruzi.dao.userdao"
-			method="usercarts">
+
+
+		<action name="AAA" class="com.uyghur.ruzi.dao.userdao" method="usercarts">
 
 			<result name="success" type="redirect">/</result>
-	
+
 		</action>
-		
-					
-		
-		
+
+
+
+
 		<action name="cart_read" class="com.uyghur.ruzi.dao.userdao"
 			method="read">
 
@@ -100,12 +99,15 @@
 
 		</action>
 
-			
+
 		<action name="json_read" class="com.uyghur.ruzi.dao.userdao"
 			method="readJson">
-		</action>
-		
+			<result type="json">
 				
+			</result>
+		</action>
+
+
 
 	</package>
 

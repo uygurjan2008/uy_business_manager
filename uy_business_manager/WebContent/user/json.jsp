@@ -13,7 +13,7 @@
 console.log("inininin");
 var da;
 $.ajax({
-		url : "http://localhost:81/uy_business_manager/user/json_read",
+		url : "http://192.168.1.112:81/uy_business_manager/user/json_read",
 		type : "get",
 		async : false,
 		success : function(data) {
