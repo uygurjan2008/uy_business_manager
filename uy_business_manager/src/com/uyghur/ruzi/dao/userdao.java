@@ -4,8 +4,12 @@ import db.Dbdriver;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.apache.struts2.interceptor.RequestAware;
 
@@ -181,7 +185,102 @@ public String read() {
 	}
 	
 	
+	public static List<userdao> rd(){
+
+
+		
+		
+		List<userdao> goods=new ArrayList<userdao>();
+		Dbdriver db=new Dbdriver();
+		
+		try {
+			Class.forName(db.driver());
+			Connection conn = db.getConn();
+			Statement stmt = conn.createStatement();
+			String sql = "SELECT * FROM `goods`";
+			ResultSet rs = stmt.executeQuery(sql);
+			System.out.println("sql" + sql);
+		 
+			while (rs.next()) {
+				
+				userdao gd=new userdao();
+				gd.setGoodname(rs.getString("name"));
+				gd.setGoodprice(rs.getString("price"));
+				gd.setGoodpic(rs.getString("pic"));
+				System.out.println(gd.goodname+","+gd.goodprice+","+gd.goodpic);
+				goods.add(gd);
+				
+
+
+			}
+
+		} catch (Exception  e) {
+
+			e.printStackTrace();
+		}
+
+		
+		
+		
+		
+		
+		return goods;
 	
+		
+		
+	}
+	
+	
+
+	 public static JSONObject readJson() {
+
+	        // JSON格式数据解析对象
+	        JSONObject jo = new JSONObject();
+	        
+	        
+	        List l1=rd();
+	       
+
+	        
+	        JSONArray ja3 = JSONArray.fromObject(l1);
+	        
+	        // 将Bean转换为JSONArray数据
+
+	        System.out.println("JSONArray对象数据格式：");
+	        
+	        System.out.println(ja3.toString());
+
+	        // 构造Json数据，包括一个map和一个Employee对象
+	        jo.put("items", ja3);
+	        jo.put("info", "json_test");
+	        jo.put("success", true);
+	        jo.put("tablename", "userinfo");
+	        
+	        System.out.println("\n最终构造的JSON数据格式：");
+	        System.out.println(jo.toString());
+	        
+	        
+	        
+	        
+	        return jo;
+	        
+	    }
+	 
+	 
+	 
+	 public String readjson_success(){
+		 String result="";
+		 if(readJson().size()>0)
+		 {
+			 result="success";
+		 }
+		 else
+		 {
+			 result="fail";
+		 }
+		 return result;
+	 
+	 }
 	
 	
 
