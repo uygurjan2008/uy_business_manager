@@ -3,8 +3,7 @@ package com.uyghur.ruzi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-
-import com.uyghur.ruzi.dao.dbutils;
+ 
 import com.uyghur.ruzi.dao.goodsdao;
 
 public class goods_in {

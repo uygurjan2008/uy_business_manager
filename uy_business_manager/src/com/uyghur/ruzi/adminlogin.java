@@ -6,8 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.uyghur.ruzi.dao.dbconnection;
-
+ 
 import db.Dbdriver;
 
 public class adminlogin {

@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.JspWriter;
+
+import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
@@ -146,6 +149,10 @@ public class 	goodsdao  implements RequestAware{
 
 
 		requestMap.put("goodss", goods);
+		JSONObject jo=new JSONObject();
+		jo.put("status", "success");
+		jo.put("myjson", goods);
+		
 		
 		
 		
