@@ -17,6 +17,17 @@ public class json {
 	private String goodname;
 	private String goodprice;
 	private String goodpic;
+	private String id;
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+
 	private Map<String, Object> requestMap;
 	
 	public String getGoodname() {

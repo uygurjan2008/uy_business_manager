@@ -8,15 +8,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.uyghur.ruzi.dao.goodsdao;
 import com.uyghur.ruzi.dao.userdao;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class useraction {
+public class goodaction {
 	private String goodname;
 	private int goodprice;
 	private String goodpic;
+	private int id;
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private Map<String, Object> requestMap;
 
 	public String getGoodname() {
@@ -43,13 +56,13 @@ public class useraction {
 		this.goodpic = goodpic;
 	}
 
-	public useraction() {
+	public goodaction() {
 
 	}
 
 	JSONObject jo = new JSONObject();
 
-	public String readJson() throws Exception {
+	public String goods_R() throws Exception {
 
 		// JSON格式数据解析对象
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -58,8 +71,8 @@ public class useraction {
 		out = response.getWriter();
 		// 将要被返回到客户端的对象
 
-		userdao ud = new userdao();
-		List l1 = ud.rd();
+		goodsdao ud = new goodsdao();
+		List l1 = ud.goods_R();
 
 		JSONArray ja3 = JSONArray.fromObject(l1);
 
@@ -74,10 +87,8 @@ public class useraction {
 		// 构造Json数据，包括一个map和一个Employee对象
 
 		// jo.put("AAA", ja3);
-		jo.put("info", "json_test");
-		jo.put("success", true);
-		jo.put("tablename", "userinfo");
-
+		jo.put("info", "goods in data base");
+		jo.put("success", true); 
 		jo.put("items", ja3);
 
 		jo.write(out);
@@ -101,7 +112,7 @@ public class useraction {
 		PrintWriter out;
 		out = response.getWriter();
 
-		userdao ud = new userdao();
+		goodsdao ud = new goodsdao();
 		boolean ad = ud.good_insert(getGoodname(), getGoodprice(), getGoodpic());
 		JSONObject o = new JSONObject();
 
@@ -128,5 +139,82 @@ public class useraction {
 		return status;
 
 	}
+	
+	
+	public String goods_U() throws Exception {
+		
+		String status;
+		// JSON格式数据解析对象
+		HttpServletResponse response = ServletActionContext.getResponse();
+
+		PrintWriter out;
+		out = response.getWriter();
+
+		goodsdao ud = new goodsdao();
+		boolean ad = ud.good_update(getGoodname(), getGoodprice(), getGoodpic(),getId());
+		JSONObject o = new JSONObject();
+
+		if (ad == true) {
+			o.put("success", ad);
+			o.put("good name", getGoodname());
+			o.put("good price", getGoodprice());
+			o.put("good pic", getGoodpic());
+			o.write(out);
+			out.flush();
+			out.close();
+			status="success";
+			
+		}else{
+			
+			status="fail";
+			o.put("success", status);
+			o.put("info","operation has failed");
+			o.write(out);
+			out.flush();
+			out.close(); 
+		}
+
+		return status;
+
+	}
+	
+	
+public String goods_D() throws Exception {
+		
+		String status;
+		// JSON格式数据解析对象
+		HttpServletResponse response = ServletActionContext.getResponse();
+
+		PrintWriter out;
+		out = response.getWriter();
+
+		goodsdao ud = new goodsdao();
+		boolean ad = ud.good_delete(getId());
+		JSONObject o = new JSONObject();
+
+		if (ad == true) {
+			o.put("success", ad);
+			o.put("good id", getId());
+			o.write(out);
+			out.flush();
+			out.close();
+			status="success";
+			
+		}else{
+			
+			status="fail";
+			o.put("success", status);
+			o.put("info","operation has failed");
+			o.write(out);
+			out.flush();
+			out.close(); 
+		}
+
+		return status;
+
+	}
+	
+	
+	
 
 }

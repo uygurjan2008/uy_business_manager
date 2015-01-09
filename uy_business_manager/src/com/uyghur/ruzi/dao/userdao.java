@@ -29,6 +29,17 @@ public class userdao implements RequestAware{
 	private String goodname;
 	private String goodprice;
 	private String goodpic;
+	private String id;
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
 	private Map<String, Object> requestMap;
 	 
 	public String getGoodname() {
@@ -112,39 +123,6 @@ public class userdao implements RequestAware{
 	
 	
 	
-	public boolean good_insert(String goodname, int goodprice, String goodpic) {
-		
-		 
-		boolean succes = false;
-		Dbdriver db=new Dbdriver();
-		Connection conn =null;
-		try {
-			Class.forName(db.driver());
-			conn= db.getConn();
-			
-			Statement stmt = conn.createStatement();
-			String sql = "INSERT INTO `goods` (`name`, `price`, `pic`) VALUES ('"
-					+ goodname + "', '" + goodprice + "', '" + goodpic + "')";
-			boolean rs = stmt.execute(sql);
-			if (rs == false) {
-				succes = true;
-				System.out.println("next" + succes);
-
-			} else {
-				succes = false;
-				System.out.println("else " + succes);
-			}
-
-		} catch (ClassNotFoundException | SQLException e) {
-
-			e.printStackTrace();
-		}
-		System.out.println("return " + succes);
-		return succes;
-
-	}
-	
-	
 	
 	
 	
@@ -170,6 +148,7 @@ public String read() {
 				gd.setGoodname(rs.getString("name"));
 				gd.setGoodprice(rs.getString("price"));
 				gd.setGoodpic(rs.getString("pic"));
+				gd.setId(rs.getString("id"));
 				System.out.println(gd.goodname+","+gd.goodprice+","+gd.goodpic);
 				
 				goods.add(gd);
@@ -250,9 +229,11 @@ public String read() {
 			while (rs.next()) {
 				
 				userdao gd=new userdao();
-				gd.setGoodname(rs.getString("name"));
-				gd.setGoodprice(rs.getString("price"));
-				gd.setGoodpic(rs.getString("pic"));
+				gd.setGoodname(rs.getString("goodname"));
+				gd.setGoodprice(rs.getString("goodprice"));
+				gd.setGoodpic(rs.getString("goodpic"));
+				gd.setId(rs.getString("id"));
+				
 				System.out.println(gd.goodname+","+gd.goodprice+","+gd.goodpic);
 				goods.add(gd);
 				

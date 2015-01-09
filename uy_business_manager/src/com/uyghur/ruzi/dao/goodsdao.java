@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspWriter;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
@@ -25,64 +26,53 @@ import db.Dbdriver;
 
 public class 	goodsdao  implements RequestAware{
 
-	private String userpass;
-	private String username;
-
-	private String name;
-	private String price;
-	private String pic;
+	 
+	private String goodname;
+	private String goodprice;
+	private String goodpic;
+	private int id;
 	
 
-
-	public String getPic() {
-		return pic;
-	}
-
-	public void setPic(String pic) {
-		this.pic = pic;
-	}
-
-	private Map<String, Object> requestMap;
-
-	public String getUserpass() {
-		return userpass;
-	}
-
-	public void setUserpass(String userpass) {
-		this.userpass = userpass;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String string) {
-		this.price = string;
-	}
-
+ 
 	 
  
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getGoodname() {
+		return goodname;
+	}
+
+	public void setGoodname(String goodname) {
+		this.goodname = goodname;
+	}
+
+	public String getGoodprice() {
+		return goodprice;
+	}
+
+	public void setGoodprice(String goodprice) {
+		this.goodprice = goodprice;
+	}
+
+	public String getGoodpic() {
+		return goodpic;
+	}
+
+	public void setGoodpic(String goodpic) {
+		this.goodpic = goodpic;
+	}
+
 	public goodsdao() {
 
 	}
 
-	public boolean insert(String name, int price, String pic) {
+	public boolean insert(String goodname, int goodprice, String goodpic) {
 
 		boolean succes = false;
 		Dbdriver db=new Dbdriver();
@@ -92,8 +82,8 @@ public class 	goodsdao  implements RequestAware{
 			conn= db.getConn();
 			
 			Statement stmt = conn.createStatement();
-			String sql = "INSERT INTO `goods` (`name`, `price`, `pic`) VALUES ('"
-					+ name + "', '" + price + "', '" + pic + "')";
+			String sql = "INSERT INTO `goods` (`goodname`, `goodprice`, `goodpic`) VALUES ('"
+					+ goodname + "', '" + goodprice + "', '" + goodpic + "')";
 			boolean rs = stmt.execute(sql);
 			if (rs == true) {
 				succes = true;
@@ -113,10 +103,10 @@ public class 	goodsdao  implements RequestAware{
 
 	}
 
-	public String read() {
+	public List<goodsdao> goods_R() {
 
 		
-		
+
 		List<goodsdao> goods=new ArrayList<goodsdao>();
 		Dbdriver db=new Dbdriver();
 		
@@ -126,15 +116,17 @@ public class 	goodsdao  implements RequestAware{
 			Statement stmt = conn.createStatement();
 			String sql = "SELECT * FROM `goods`";
 			ResultSet rs = stmt.executeQuery(sql);
-			
+			System.out.println("sql" + sql);
 		 
 			while (rs.next()) {
 				
 				goodsdao gd=new goodsdao();
-				gd.setName(rs.getString("name"));
-				gd.setPrice(rs.getString("price")); 
-				gd.setPic(rs.getString("pic"));
-				//System.out.println("pic:"+gd.pic);
+				gd.setGoodname(rs.getString("goodname"));
+				gd.setGoodprice(rs.getString("goodprice"));
+				gd.setGoodpic(rs.getString("goodpic"));
+				gd.setId(rs.getInt("id"));
+				//System.out.println(gd.goodname+","+gd.goodprice+","+gd.goodpic);
+				
 				goods.add(gd);
 				
 
@@ -146,25 +138,124 @@ public class 	goodsdao  implements RequestAware{
 			e.printStackTrace();
 		}
 
+		
+	
+		   
+		return goods;
 
-
-		requestMap.put("goodss", goods);
-		JSONObject jo=new JSONObject();
-		jo.put("status", "success");
-		jo.put("myjson", goods);
-		
-		
-		
-		
-		
-		return "success";
 
 	}
 
 	@Override
-	public void setRequest(Map<String, Object> requestMap) {
-		this.requestMap = requestMap;
+	public void setRequest(Map<String, Object> arg0) {
+		// TODO Auto-generated method stub
 		
 	}
+		
+	public boolean good_insert(String goodname, int goodprice, String goodpic) {
+		
+		 
+		boolean succes = false;
+		Dbdriver db=new Dbdriver();
+		Connection conn =null;
+		try {
+			Class.forName(db.driver());
+			conn= db.getConn();
+			
+			Statement stmt = conn.createStatement();
+			
+			
+
+			String sql = "INSERT INTO `goods` (`goodname`, `goodprice`, `goodpic`) VALUES ('"
+					+ goodname + "', '" + goodprice + "', '" + goodpic + "')";
+			boolean rs = stmt.execute(sql); 
+			
+			
+			if (rs == false) {
+				succes = true;
+				System.out.println("next " + succes);
+
+			} else {
+				succes = false;
+				System.out.println("else " + succes);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+		System.out.println("return " + succes);
+		return succes;
+
+	}
+	
+	
+	
+	public boolean good_update(String goodname, int goodprice, String goodpic,int id) {
+		
+		 
+		boolean succes = false;
+		Dbdriver db=new Dbdriver();
+		Connection conn =null;
+		try {
+			Class.forName(db.driver());
+			conn= db.getConn();
+			
+			Statement stmt = conn.createStatement();
+			String sql = "UPDATE `uy_business_manager`.`goods` SET "+
+			"`goodname` = '"+goodname+"', `goodprice` = '"+goodprice
+			+"', `goodpic` = '"+goodpic+"' WHERE `goods`.`id` = "+id+";";
+			boolean rs = stmt.execute(sql);
+			System.out.println(sql+","+rs);
+			if (rs == false) {
+				succes = true;
+				System.out.println("next" + succes);
+
+			} else {
+				succes = false;
+				System.out.println("else " + succes);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+		System.out.println("return " + succes);
+		return succes;
+
+	}
+	
+	public boolean good_delete(int id) {
+		
+		 
+		boolean succes = false;
+		Dbdriver db=new Dbdriver();
+		Connection conn =null;
+		try {
+			Class.forName(db.driver());
+			conn= db.getConn();
+			
+			Statement stmt = conn.createStatement();
+			String sql = "DELETE FROM `uy_business_manager`.`goods` WHERE `goods`.`id`="+id+";";
+			boolean rs = stmt.execute(sql);
+			System.out.println(sql+","+rs);
+			if (rs == false) {
+				succes = true;
+				System.out.println("next" + succes);
+
+			} else {
+				succes = false;
+				System.out.println("else " + succes);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+		System.out.println("return " + succes);
+		return succes;
+
+	}
+	 
 
 }
