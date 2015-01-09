@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="Name" msgid="1">"ئىسمى"</string>
+	<string name="Work Id" msgid="2">"خىزمەت نومۇرى"</string>
+	<string name="Department" msgid="3">"بۆلۈم"</string>
+	<string name="Tribes" msgid="4">"مىللىتى"</string>
+	<string name="Sex" msgid="5">"جىنسى"</string>
+	<string name="No" msgid="6">"تەرتىپ"</string>
+	<string name="Company" msgid="7">"تەۋە ئورگان"</string>
+	<string name="Password" msgid="8">"پارول"</string>
+	<string name="Group" msgid="9">"گۇرۇپپا"</string>
+	<string name="Picture" msgid="10">"رەسىم"</string>
+	<string name="Staff Seniority" msgid="11">"سىتاژى"</string>
+	<string name="Privileges" msgid="12">"ھوقوقلىرى"</string>
+	<string name="Birthday" msgid="13">"تۇغۇلغان ۋاقتى"</string>
+	<string name="Education Level" msgid="14">"مائارىپ سەۋىيسى"</string>
+	<string name="Marriage" msgid="15">"نىكاھ ئەھۋالى"</string>
+</resources>

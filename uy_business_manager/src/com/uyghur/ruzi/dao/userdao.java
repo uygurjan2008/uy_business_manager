@@ -25,17 +25,12 @@ import com.opensymphony.xwork2.ActionContext;
  */
 public class userdao implements RequestAware{
 	
-	private String username;
+	
 	private String goodname;
 	private String goodprice;
 	private String goodpic;
 	private Map<String, Object> requestMap;
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	 
 	public String getGoodname() {
 		return goodname;
 	}
@@ -114,6 +109,44 @@ public class userdao implements RequestAware{
 		return succes;
 
 	}
+	
+	
+	
+	public boolean good_insert(String goodname, int goodprice, String goodpic) {
+		
+		 
+		boolean succes = false;
+		Dbdriver db=new Dbdriver();
+		Connection conn =null;
+		try {
+			Class.forName(db.driver());
+			conn= db.getConn();
+			
+			Statement stmt = conn.createStatement();
+			String sql = "INSERT INTO `goods` (`name`, `price`, `pic`) VALUES ('"
+					+ goodname + "', '" + goodprice + "', '" + goodpic + "')";
+			boolean rs = stmt.execute(sql);
+			if (rs == false) {
+				succes = true;
+				System.out.println("next" + succes);
+
+			} else {
+				succes = false;
+				System.out.println("else " + succes);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+		System.out.println("return " + succes);
+		return succes;
+
+	}
+	
+	
+	
+	
 	
 	
 public String read() {

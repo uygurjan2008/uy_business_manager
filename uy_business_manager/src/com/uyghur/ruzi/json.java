@@ -1,7 +1,12 @@
 package com.uyghur.ruzi;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.uyghur.ruzi.dao.userdao;
 
@@ -44,7 +49,12 @@ public class json {
 	 public  String readJson() throws Exception {
 
 	        // JSON格式数据解析对象
-	       
+		 HttpServletResponse response=ServletActionContext.getResponse();
+	        
+	        
+	        PrintWriter out;
+	        out = response.getWriter();
+	        //将要被返回到客户端的对象
 	        
 	        userdao ud=new userdao();
 	        List l1=ud.rd();
@@ -60,17 +70,22 @@ public class json {
 	        System.out.println(ja3.toString());
 
 	        // 构造Json数据，包括一个map和一个Employee对象
-	        jo.put("items", ja3);
+	      
+
 	        //jo.put("AAA", ja3);
 	        jo.put("info", "json_test");
 	        jo.put("success", true);
 	        jo.put("tablename", "userinfo");
 	        
+	        jo.put("items", ja3);
+	        
+	        jo.write(out);
 	        
 	        System.out.println("\n最终构造的JSON数据格式：");
 	        System.out.println(jo.toString());
 	        
-	        
+	        out.flush();
+	        out.close();
 	        
 	      
 	       

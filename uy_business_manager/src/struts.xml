@@ -20,11 +20,9 @@
 			method="read">
 			<result>/index.jsp</result>
 		</action>
-		<action name="read" class="com.uyghur.ruzi.dao.goodsdao"
-			method="read">
-			<result>/index.jsp</result>
+		
 
-		</action>
+
 
 	</package>
 
@@ -103,7 +101,7 @@
 		<action name="json_read" class="com.uyghur.ruzi.dao.userdao"
 			method="readJson">
 			<result type="json">
-				
+
 			</result>
 		</action>
 
@@ -111,7 +109,29 @@
 
 	</package>
 
+	<package name="ss" extends="json-default">
+	
+		<action name="read" class="com.uyghur.ruzi.json" method="readJson">
+			<result type="json">
+			
+			</result>
 
+		</action>
+		
+		<action name="goods_I" class="com.uyghur.ruzi.useraction" method="goods_I">
+			<result type="json" name="success">
+				
+			</result>
+			<result type="json" name="fail">
+				
+			</result>
+			
+
+		</action>
+		
+		
+	
+	</package>
 
 
 
