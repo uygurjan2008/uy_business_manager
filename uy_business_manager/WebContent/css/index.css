@@ -1,9 +1,33 @@
 @CHARSET "UTF-8";
-.ok{
-	width: 300px;
-		height: 180px;
-		border: 1px solid;
-		border-radius: 10px;
-		margin-left:15px;
-		margin-top:15px;
+
+.all {
+	margin-left: 5%;
+	margin-right: 5%;
+	float: left;
+}
+
+.left {
+	width: 20%;
+	min-height: 700px;
+	float: left;
+	border: 1px solid;
+}
+
+.right {
+	width: 20%;
+	min-height: 700px;
+	float: left;
+	border: 1px solid;
+}
+
+.center {
+	float: left;
+	width: 50%;
+	min-height: 700px;
+	border: 1px solid;
+}
+
+.centercontent {
+	float: left;
+	width: 100%;
 }

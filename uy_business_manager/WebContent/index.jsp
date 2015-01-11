@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>cart</title>
+<title>consumer review page</title>
 
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet"
@@ -14,61 +14,97 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 
 
+<script type="text/javascript">
+	var goods;
+	$.ajax({
+		url : "read.action",
+		type : "get",
+		dataType : "json",
+		async : false,
+		success : function(e) {
+			//console.log(e);
+			goods = e;
+		}
+
+	});
+
+	function d(id) {
+		$.ajax({
+			url : "goods_D.action",
+			type : "post",
+			async : false,
+			data : {
+				id : id
+			},
+			success : function(e) {
+				console.log("deleted id ", id);
+			}
+		});
+	}
+
+	$(document).ready(
+			function() {
+
+				for ( var i in goods.items) {
+
+					$(".centercontent").append(
+							"<div class='col-lg-12 tr'  style='border:1px solid;'>"
+									+ "<div class='col-md-3'>"
+									+ goods.items[i].goodname + "</div>"
+									+ "<div class='col-md-3' >"
+									+ goods.items[i].goodprice + "</div>"
+									+ "<div class='col-md-3' >"
+									+ goods.items[i].goodpic + "</div>"
+									+ "<div class='col-md-3 hidden id' >"
+									+ goods.items[i].id + "</div>"
+								+ "<div class='col-md-3'  >"
+									+ "<a class='btn btn-info edit'>edit</a>"
+									+ "<a class='btn btn-danger delete' disabled='disabled'>delete</a>"
+									+ "</div>" + "</div>");
+					/*
+					删除随便输入的一些数据
+					if(goods.items[i].goodname.length<4){
+						console.log(goods.items[i].goodname,goods.items[i].id);
+						d(goods.items[i].id);
+					}
+					
+					 */
+
+				}
+
+				
+				$(".edit").click(function(){
+					console.log($(this).parent().parent().find(".id")[0].innerText);
+					
+				});
+				
+				
+			});
+</script>
+
 </head>
-<body onload="">
+<body>
 
-
-	<div align="center">
-		<a href="user/cart_read" class="btn btn-info">check my orders</a>
-	</div>
-	<div align="center" style="float: left; margin-left: 10%;">
-		<div align="center">
-
-			<div align="center">
-
-
-				<s:iterator value="#request.goodss">
-
-					<div style="float: left;">
-
-						<div class="ok" id='<s:property value="name" />'>
-							
-							<input type="hidden" name="goodname" value='<s:property value="name" />' />
-							<input type="hidden" name="goodprice" value='<s:property value="price" />' />
-							<input type="hidden" name="goodpic" value='<s:property value="pic" />' />
-							
-							
-							<img name="goodpic" id="pic" src='<s:property value="pic" />'
-									width="300px" height="100px">
-								<p>
-									<label for="" id="name" name="goodname"><s:property
-											value="name" /> </label>|<label for="" id="price" name="goodprice">
-										<s:property value="price" />
-									</label>
-								</p>
-							 
-
-							<a
-								href="user/usercart?goodname=<s:property value="name" />&goodprice=<s:property value="price" />&goodpic=<s:property value="pic" />"
-								class="btn btn-info">加入购物车</a>
-						</div>
-
-
-
-					</div>
-
-
-
-				</s:iterator>
-
+	<div class="all">
+		<div class="left"></div>
+		<div class="center">
+			<div class="centertop">
+				<div class="col-lg-12">
+					<label for="">goods in data base</label>
+				</div>
+				<div class="col-md-4">goodname</div>
+				<div class="col-md-4">goodprice</div>
+				<div class="col-md-4">goodpic</div>
 			</div>
-
+			<div class="centercontent"></div>
 
 
 		</div>
+		<div class="right"></div>
+
+
+
 
 	</div>
-
-
 </body>
 </html>
