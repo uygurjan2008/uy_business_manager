@@ -202,7 +202,7 @@ public class 	goodsdao  implements RequestAware{
 			conn= db.getConn();
 			
 			Statement stmt = conn.createStatement();
-			String sql = "UPDATE `uy_business_manager`.`goods` SET "+
+			String sql = "UPDATE `goods` SET "+
 			"`goodname` = '"+goodname+"', `goodprice` = '"+goodprice
 			+"', `goodpic` = '"+goodpic+"' WHERE `goods`.`id` = "+id+";";
 			boolean rs = stmt.execute(sql);
@@ -236,7 +236,7 @@ public class 	goodsdao  implements RequestAware{
 			conn= db.getConn();
 			
 			Statement stmt = conn.createStatement();
-			String sql = "DELETE FROM `uy_business_manager`.`goods` WHERE `goods`.`id`="+id+";";
+			String sql = "DELETE FROM `goods` WHERE `id`="+id+";";
 			boolean rs = stmt.execute(sql);
 			System.out.println(sql+","+rs);
 			if (rs == false) {

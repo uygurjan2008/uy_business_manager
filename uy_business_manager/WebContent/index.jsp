@@ -30,7 +30,7 @@
 
 	function d(id) {
 		$.ajax({
-			url : "goods_D.action",
+			url : "business/goods_D.action",
 			type : "post",
 			async : false,
 			data : {
@@ -61,14 +61,16 @@
 									+ "<a class='btn btn-info edit'>edit</a>"
 									+ "<a class='btn btn-danger delete' disabled='disabled'>delete</a>"
 									+ "</div>" + "</div>");
+					
+					//删除随便输入的一些数据
 					/*
-					删除随便输入的一些数据
 					if(goods.items[i].goodname.length<4){
 						console.log(goods.items[i].goodname,goods.items[i].id);
-						d(goods.items[i].id);
+						//d(goods.items[i].id);
 					}
+					*/
 					
-					 */
+					 
 
 				}
 

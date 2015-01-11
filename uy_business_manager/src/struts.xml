@@ -15,13 +15,41 @@
 
 		 
 		
-		<action name="read" class="com.uyghur.ruzi.json" method="readJson">
-			<result type="json">					 
-			</result>
+		
+
+
+
+
+
+
+	</package>
+
+
+
+	<package name="admin" namespace="/admin" extends="struts-default">
+
+		<action name="login" class="com.uyghur.ruzi.adminlogin">
+			<result name="success">/admin/adminhome.jsp</result>
+			<result name="fail">/admin/login.jsp</result>
+
+		</action>
+
+		<action name="register" class="com.uyghur.ruzi.register">
+			<result name="null">/admin/fail.jsp</result>
+			<result name="notnul">/admin/success.jsp</result>
+			<result name="ok">/admin/login.jsp</result>
 
 		</action>
 
 
+
+
+
+	</package>
+
+	<package name="business" namespace="/business" extends="json-default">
+
+		
 		<action name="goods_R" class="com.uyghur.ruzi.goodaction"
 			method="goods_R">
 			<result type="json" name="success">
@@ -78,81 +106,55 @@
 
 
 
-
-	</package>
-
-
-
-	<package name="admin" namespace="/admin" extends="struts-default">
-
-		<action name="login" class="com.uyghur.ruzi.adminlogin">
-			<result name="success">/admin/adminhome.jsp</result>
-			<result name="fail">/admin/login.jsp</result>
-
-		</action>
-
-		<action name="register" class="com.uyghur.ruzi.register">
-			<result name="null">/admin/fail.jsp</result>
-			<result name="notnul">/admin/success.jsp</result>
-			<result name="ok">/admin/login.jsp</result>
-
-		</action>
-
-
-
-
-
-	</package>
-
-	<package name="business" namespace="/business" extends="struts-default">
-
-		<action name="goods_in" class="com.uyghur.ruzi.goods_in">
-
-			<result name="in">/business/goods_in.jsp</result>
-			<result name="else">/business/goods_in.jsp</result>
-
-		</action>
-
-
-		<action name="goods_read" class="com.uyghur.ruzi.dao.goodsdao"
-			method="read">
-
-			<result>/business/goods_in.jsp</result>
-
-		</action>
-
-
-
 	</package>
 
 
 	<package name="user" namespace="/user" extends="json-default">
 
-		<action name="usercart" class="com.uyghur.ruzi.dao.userdao"
-			method="usercart">
+		
+		
 
-			<result name="success" type="redirect">/</result>
+
+
+		<action name="user_I" class="com.uyghur.ruzi.useraction"
+			method="user_I">
+			<result type="json" name="success">
+
+			</result>
+			<result type="json" name="fail">
+
+			</result>
+
+
+		</action>
+
+		<action name="user_U" class="com.uyghur.ruzi.useraction"
+			method="user_U">
+			<result type="json" name="success">
+
+			</result>
+			<result type="json" name="fail">
+
+			</result>
+
+
+		</action>
+		
+		
+		
+		<action name="user_D" class="com.uyghur.ruzi.goodaction"
+			method="goods_D">
+			<result type="json" name="success">
+
+			</result>
+			<result type="json" name="fail">
+
+			</result>
+
 
 		</action>
 
 
-		<action name="AAA" class="com.uyghur.ruzi.dao.userdao" method="usercarts">
-
-			<result name="success" type="redirect">/</result>
-
-		</action>
-
-
-
-
-		<action name="cart_read" class="com.uyghur.ruzi.dao.userdao"
-			method="read">
-
-			<result>/user/mycart.jsp</result>
-
-		</action>
-
- 
 
 
 
