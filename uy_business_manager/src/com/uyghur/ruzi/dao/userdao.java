@@ -207,5 +207,43 @@ public class userdao implements RequestAware {
 		return succes;
 
 	}
+	
+	
+	public boolean user_check(String username) {
 
+		boolean succes = false;
+		Dbdriver db = new Dbdriver();
+		Connection conn = null;
+		try {
+			Class.forName(db.driver());
+			conn = db.getConn();
+
+			Statement stmt = conn.createStatement();
+			String sql = "select `username` FROM `users` WHERE `username`='" + username + "';";
+			ResultSet rs = stmt.executeQuery(sql);
+			System.out.println(sql + "," + rs);
+			if (rs.next()) {
+				succes = true;
+				
+				System.out.println("user exist"+rs.getString(1));
+				
+
+			} else {
+				succes = false;
+				System.out.println("user does not exist ");
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+		System.out.println("return " + succes);
+		return succes;
+
+	}
+	
+	
+	
+	
+	
 }

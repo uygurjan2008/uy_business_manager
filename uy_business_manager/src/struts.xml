@@ -34,12 +34,6 @@
 
 		</action>
 
-		<action name="register" class="com.uyghur.ruzi.register">
-			<result name="null">/admin/fail.jsp</result>
-			<result name="notnul">/admin/success.jsp</result>
-			<result name="ok">/admin/login.jsp</result>
-
-		</action>
 
 
 
@@ -142,8 +136,8 @@
 		
 		
 		
-		<action name="user_D" class="com.uyghur.ruzi.goodaction"
-			method="goods_D">
+		<action name="user_D" class="com.uyghur.ruzi.useraction"
+			method="user_D">
 			<result type="json" name="success">
 
 			</result>
@@ -155,7 +149,20 @@
 		</action>
 
 
+		<action name="user_check" class="com.uyghur.ruzi.useraction"
+			method="user_check">
+			<result type="json" name="success">
 
+			</result>
+			<result type="json" name="fail">
+
+			</result>
+
+
+		</action>
+		
+		
+		 
 
 
 	</package>

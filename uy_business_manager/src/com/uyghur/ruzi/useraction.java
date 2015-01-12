@@ -196,5 +196,46 @@ public class useraction {
 		return status;
 
 	}
+	
+	public String user_check() throws Exception {
+
+		String status;
+		// JSON格式数据解析对象
+		HttpServletResponse response = ServletActionContext.getResponse();
+
+		PrintWriter out;
+		out = response.getWriter();
+
+		userdao ud = new userdao();
+		System.out.println("username"+getUsername());
+		boolean ad = ud.user_check(getUsername());
+		JSONObject o = new JSONObject();
+
+		if (ad == true) {
+			o.put("success", ad);
+			o.write(out);
+			out.flush();
+			out.close();
+			status = "success";
+
+		} else {
+
+			status = "fail";
+			o.put("success", status);
+			o.put("info", "user does not exist,ready to use");
+			o.write(out);
+			out.flush();
+			out.close();
+		}
+
+		return status;
+
+	}
+	
+	
+	
+	
+	
+	
 
 }
