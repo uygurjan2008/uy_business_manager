@@ -30,7 +30,11 @@ public class useraction {
 	 
   
 
-	public int getTel() {
+	public int getTel() throws Exception{
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String tellString=request.getParameter("tel");
+		int tel=Integer.parseInt(tellString);
+		System.out.println("tel:"+tel);
 		return tel;
 	}
 
