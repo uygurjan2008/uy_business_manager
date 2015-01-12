@@ -20,9 +20,23 @@ public class useraction {
 	private String userpassword;
 	private String useremail;
 	private Integer userid;
-	private Integer tel;
+	private int tel;
 	private String loginip;
 	private String gender;
+	 
+ 
+ 
+	  
+	 
+  
+
+	public int getTel() {
+		return tel;
+	}
+
+	public void setTel(int tel) {
+		this.tel = tel;
+	}
 
 	public String getUsername() {
 		return username;
@@ -55,19 +69,13 @@ public class useraction {
 	public void setUserid(Integer userid) {
 		this.userid = userid;
 	}
+ 
 
-	public Integer getTel() {
-		return tel;
-	}
-
-	public void setTel(Integer tel) {
-		this.tel = tel;
-	}
-
+	 
 	public String getLoginip() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String ip=request.getRemoteAddr();
-		System.out.println("login ip :"+ip);
+		System.out.println("user ip :"+ip);
 		return ip;
 	}
 
@@ -96,9 +104,10 @@ public class useraction {
 
 		userdao ud = new userdao();
 		System.out.println(getUsername()+","+ getUserpassword()+","+
-				getUseremail()+","+ getTel()+","+ getLoginip()+","+ getGender());
+				getUseremail()+",tel:"+ getTel()+","+ getLoginip()+","+ getGender());
 		boolean ad = ud.user_insert(getUsername(), getUserpassword(),
 				getUseremail(), getTel(), getLoginip(), getGender());
+		
 		JSONObject o = new JSONObject();
 
 		if (ad == true) {
@@ -232,6 +241,41 @@ public class useraction {
 
 	}
 	
+	
+	public String user_email_check() throws Exception {
+
+		String status;
+		// JSON格式数据解析对象
+		HttpServletResponse response = ServletActionContext.getResponse();
+
+		PrintWriter out;
+		out = response.getWriter();
+
+		userdao ud = new userdao();
+		System.out.println("username"+getUsername());
+		boolean ad = ud.user_email_check(getUseremail());
+		JSONObject o = new JSONObject();
+
+		if (ad == true) {
+			o.put("success", ad);
+			o.write(out);
+			out.flush();
+			out.close();
+			status = "success";
+
+		} else {
+
+			status = "fail";
+			o.put("success", status);
+			o.put("info", "useremail does not exist,ready to use");
+			o.write(out);
+			out.flush();
+			out.close();
+		}
+
+		return status;
+
+	}
 	
 	
 	

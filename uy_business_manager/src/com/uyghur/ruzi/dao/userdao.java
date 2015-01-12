@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
@@ -30,7 +31,7 @@ public class userdao implements RequestAware {
 	private String userpassword;
 	private String useremail;
 	private Integer userid;
-	private Integer tel;
+	private int tel;
 	private String loginip;
 	private String gender;
 
@@ -74,11 +75,15 @@ public class userdao implements RequestAware {
 		this.userid = userid;
 	}
 
-	public Integer getTel() {
+	 
+
+	 
+
+	public int getTel() {
 		return tel;
 	}
 
-	public void setTel(Integer tel) {
+	public void setTel(int tel) {
 		this.tel = tel;
 	}
 
@@ -104,18 +109,22 @@ public class userdao implements RequestAware {
 	}
 
 	public boolean user_insert(String username, String userpassword,
-			String useremail, int tel, String loginip, String gender) {
+			String useremail, Integer tel, String loginip, String gender) {
 
 		boolean succes = false;
 		Dbdriver db = new Dbdriver();
 		Connection conn = null;
 		try {
+
 			Class.forName(db.driver());
+
+
 			conn = db.getConn();
+
 
 			Statement stmt = conn.createStatement();
 
-			String sql = " INSERT INTO `users`(`username`,`userpassword`,`useremail`,`tel`,`loginip`,`gender`) VALUES ( '"
+			String sql = "INSERT INTO `users`(`username`,`userpassword`,`useremail`,`tel`,`loginip`,`gender`) VALUES ( '"
 					+ username
 					+ "','"
 					+ userpassword
@@ -144,7 +153,7 @@ public class userdao implements RequestAware {
 	}
 
 	public boolean user_update(String userpassword,
-			String useremail, int tel, String gender,int userid) {
+			String useremail, Integer tel, String gender,Integer userid) {
 
 		boolean succes = false;
 		Dbdriver db = new Dbdriver();
@@ -242,6 +251,39 @@ public class userdao implements RequestAware {
 
 	}
 	
+	
+	public boolean user_email_check(String useremail) {
+
+		boolean succes = false;
+		Dbdriver db = new Dbdriver();
+		Connection conn = null;
+		try {
+			Class.forName(db.driver());
+			conn = db.getConn();
+
+			Statement stmt = conn.createStatement();
+			String sql = "select `useremail` FROM `users` WHERE `useremail`='" + useremail + "';";
+			ResultSet rs = stmt.executeQuery(sql);
+			System.out.println(sql + "," + rs);
+			if (rs.next()) {
+				succes = true;
+				
+				System.out.println("useremail exist"+rs.getString(1));
+				
+
+			} else {
+				succes = false;
+				System.out.println("useremail does not exist ");
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+		System.out.println("return " + succes);
+		return succes;
+
+	}
 	
 	
 	

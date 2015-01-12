@@ -157,11 +157,26 @@
 			<result type="json" name="fail">
 
 			</result>
+			
+			
 
 
 		</action>
 		
 		
+		<action name="user_email_check" class="com.uyghur.ruzi.useraction"
+			method="user_email_check">
+			<result type="json" name="success">
+
+			</result>
+			<result type="json" name="fail">
+
+			</result>
+			
+			
+
+
+		</action>
 		 
 
 
