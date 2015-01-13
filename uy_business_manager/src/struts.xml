@@ -181,7 +181,17 @@
 
 
 	</package>
- 
+ 	
+ 	
+ 	<package name="test" extends="json-default">
+ 	
+ 	<action name="int_test" class="com.uyghur.ruzi.testAction">
+ 		<result name="success" >
+ 			/register.jsp
+ 		</result>
+ 		
+ 	</action>
+ 	</package>
 
 
 

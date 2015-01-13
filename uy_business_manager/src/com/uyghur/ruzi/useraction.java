@@ -28,13 +28,8 @@ public class useraction {
  
 	  
 	 
-  
-
-	public int getTel() throws Exception{
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String tellString=request.getParameter("tel");
-		int tel=Integer.parseInt(tellString);
-		System.out.println("tel:"+tel);
+   
+	public int getTel() {
 		return tel;
 	}
 
