@@ -12,8 +12,7 @@
 
 	<package name="name1" extends="json-default" namespace="/" >
 
-
-		 
+		
 		
 		
 
@@ -26,7 +25,7 @@
 
 
 
-	<package name="admin" namespace="/admin" extends="struts-default">
+	<package name="admin" namespace="/admin" extends="json-default">
 
 		<action name="login" class="com.uyghur.ruzi.adminlogin">
 			<result name="success">/admin/adminhome.jsp</result>
@@ -34,7 +33,13 @@
 
 		</action>
 
-
+		
+		<action name="get_all_users" class="com.uyghur.ruzi.adminaction" method="get_all_users">
+			<result type="json">
+			
+			</result>
+		</action>
+		 
 
 
 
