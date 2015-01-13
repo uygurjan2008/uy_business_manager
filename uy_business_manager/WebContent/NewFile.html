@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+$.ajax({
+	url:"http://192.168.1.11:8080/QARLUQ_HIS/Weiyizhenduan_R.action?locale=zh_CN&Yuangongbianhao=124",
+	type:"get",
+	dataType:"json",
+	async:false,
+	success:function(e){
+	console.log(e);
+	}
+});
+
+</script>
+</head>
+<body>
+ 
+ 
+</body>
+</html>
