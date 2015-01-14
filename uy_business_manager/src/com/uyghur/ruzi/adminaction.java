@@ -34,8 +34,9 @@ public class adminaction {
 				
 				HttpServletResponse response = ServletActionContext.getResponse();
 				HttpServletRequest request = ServletActionContext.getRequest();
-				request.setCharacterEncoding("UTF-8");
+				//request.setCharacterEncoding("UTF-8");
 				response.setCharacterEncoding("UTF-8");
+				response.setContentType("text/json;charset=utf8");
 				PrintWriter out;
 				out = response.getWriter();
 				// 将要被返回到客户端的对象

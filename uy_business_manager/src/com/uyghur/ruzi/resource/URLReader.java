@@ -68,7 +68,48 @@ public class URLReader {
 		return "success";
 
 	}
+	
+	public String URLReader_page() throws Exception {
+		System.out.println("url read page"+getUrl());
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out;
+		out = response.getWriter();
+ 
+		URL oracle = new URL(getUrl());
+		BufferedReader in = new BufferedReader(new InputStreamReader(
+				oracle.openStream(),"UTF-8"));
+		
+		String inputLine;
+		String aa ="";
+		while ((inputLine = in.readLine()) != null) {
+			// System.out.println(inputLine);
+			// m.put(key, value);
+			aa+=inputLine;
 
+		}
+		
+		in.close();
+		System.out.println("ss:" + aa);
+		
+		
+		 /*
+		
+		JSONObject j1 = JSONObject.fromObject(aa);
+		 
+		j1.write(out);
+		 
+		out.flush();
+		out.close();
+		*/
+		
+		return "success";
+
+	}
+	
+	
+	
+	
 	
 
 }

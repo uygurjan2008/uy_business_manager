@@ -244,7 +244,7 @@
 <body>
 	<div align="center">
 		<div class="row" align="center"
-			style="width: 600px; height: auto; margin-top: 60px; border: 1px solid; border-radius: 10px;">
+			style="width: 700px; height: auto; margin-top: 60px; border: 1px solid; border-radius: 10px;">
 			<form class="form">
 				<div class="col-lg-12 cl cl" style="margin-top: 5px;">
 					<div class="col-md-4">username</div>

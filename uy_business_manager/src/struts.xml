@@ -20,6 +20,14 @@
 			</result>
 
 		</action>
+		
+		<action name="get_page" class="com.uyghur.ruzi.resource.URLReader" method="URLReader_page">
+			
+			<result type="json">
+
+			</result>
+			
+		</action>
 
 
 
