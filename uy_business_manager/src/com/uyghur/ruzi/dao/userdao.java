@@ -136,18 +136,18 @@ public class userdao implements RequestAware {
 			
 			if (rs == false) {
 				succes = true;
-				System.out.println("next " + succes);
+				//System.out.println("next " + succes);
 
 			} else {
 				succes = false;
-				System.out.println("else " + succes);
+				//System.out.println("else " + succes);
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
 
 			e.printStackTrace();
 		}
-		System.out.println("return " + succes);
+		//System.out.println("return " + succes);
 		return succes;
 
 	}
@@ -170,7 +170,7 @@ public class userdao implements RequestAware {
 			System.out.println(sql + "," + rs);
 			if (rs == false) {
 				succes = true;
-				System.out.println("next" + succes);
+				//System.out.println("next" + succes);
 
 			} else {
 				succes = false;
@@ -181,7 +181,7 @@ public class userdao implements RequestAware {
 
 			e.printStackTrace();
 		}
-		System.out.println("return " + succes);
+		//System.out.println("return " + succes);
 		return succes;
 
 	}
@@ -196,16 +196,16 @@ public class userdao implements RequestAware {
 			conn = db.getConn();
 
 			Statement stmt = conn.createStatement();
-			String sql = "DELETE FROM `users` WHERE `id`=" + userid + ";";
+			String sql = "DELETE FROM `users` WHERE `userid`=" + userid + ";";
 			boolean rs = stmt.execute(sql);
-			System.out.println(sql + "," + rs);
+			//System.out.println(sql + "," + rs);
 			if (rs == false) {
 				succes = true;
-				System.out.println("next" + succes);
+				//System.out.println("next" + succes);
 
 			} else {
 				succes = false;
-				System.out.println("else " + succes);
+				//System.out.println("else " + succes);
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {

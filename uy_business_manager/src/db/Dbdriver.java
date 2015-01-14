@@ -35,14 +35,14 @@ public class Dbdriver {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("conn:"+url+","+username+","+password);
+		//System.out.println("conn:"+url+","+username+","+password);
 		return conn;
 	}
 	
 	public static String driver()
 	{
 		String driver="com.mysql.jdbc.Driver";
-		System.out.println("driver String :"+driver);
+		//System.out.println("driver String :"+driver);
 		return driver;
 	}
 	

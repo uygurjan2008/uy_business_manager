@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
@@ -30,8 +31,11 @@ public class adminaction {
 
 	public String get_all_users() throws IOException{
 		// JSON格式数据解析对象
-				HttpServletResponse response = ServletActionContext.getResponse();
 				
+				HttpServletResponse response = ServletActionContext.getResponse();
+				HttpServletRequest request = ServletActionContext.getRequest();
+				request.setCharacterEncoding("UTF-8");
+				response.setCharacterEncoding("UTF-8");
 				PrintWriter out;
 				out = response.getWriter();
 				// 将要被返回到客户端的对象
@@ -63,7 +67,7 @@ public class adminaction {
 				jo.write(out);
 
 				//System.out.println("\n最终构造的JSON数据格式：");
-				//System.out.println(jo.toString());
+				System.out.println(jo.toString());
 
 				out.flush();
 				out.close();

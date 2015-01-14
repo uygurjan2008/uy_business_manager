@@ -17,7 +17,7 @@
 <script type="text/javascript">
 	var goods;
 	$.ajax({
-		url : "read.action",
+		url : "business/goods_R.action",
 		type : "get",
 		dataType : "json",
 		async : false,
