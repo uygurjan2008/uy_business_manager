@@ -75,13 +75,7 @@ public class admindao {
 		this.gender = gender;
 	}
 
-	@Override
-	public String toString() {
-		return "admindao [username=" + username + ", userpassword="
-				+ userpassword + ", useremail=" + useremail + ", userid="
-				+ userid + ", tel=" + tel + ", loginip=" + loginip
-				+ ", gender=" + gender + "]";
-	}
+	
 
 	public List<admindao> users_R() {
 
@@ -94,7 +88,7 @@ public class admindao {
 			Statement stmt = conn.createStatement();
 			String sql = "SELECT * FROM `users`";
 			ResultSet rs = stmt.executeQuery(sql);
-			System.out.println("sql" + sql);
+			//System.out.println("sql" + sql);
 
 			while (rs.next()) {
 
