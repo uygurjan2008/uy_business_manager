@@ -196,7 +196,7 @@
 													|| tel.length < 11) {
 												$(this).parent().parent().find(
 														".message")[0].innerHTML = "<font color='red' size='4'>"
-														+ "try to control it under 11 digit "
+														+ "number under 11 digit"
 														+ "</font>";
 											} else {
 												$(this).parent().parent().find(
@@ -211,32 +211,74 @@
 
 						});
 
-						$(".submit").click(
-								function() {
+						$(".userpassword1")
+								.focusout(
+										function() {
 
-									if (result != "exist") {
-										var form = $(".form").serialize();
+											if ($(".userpassword").val() == $(
+													".userpassword1").val()) {
+												$(this).parent().parent().find(
+														".message")[0].innerHTML = "<font color='green' size='4'>"
+														+ "password is good to go"
+														+ "</font>";
+											} else {
 
-										$.ajax({
-											url : "user/user_I",
-											type : "post",
-											data : form,
-											async:false,
-											success : function(e) {
-												console.log(e);
-
-												$(".result").append(
-														"<p>" + e + "</p>");
-												$(".result").css("background",
-														"green");
+												$(this).parent().parent().find(
+														".message")[0].innerHTML = "<font color='red' size='4'>"
+														+ "password is incorrect"
+														+ "</font>";
 
 											}
 
 										});
-									} else {
-										alert("please verify the message");
-									}
-								});
+
+						$(".submit")
+								.click(
+										function() {
+											var a = $(".username").val().length;
+											var b = $(".userpassword").val().length;
+											var c = $(".useremail").val().length;
+
+											if (result != "exist" && a > 0
+													&& b > 0 && c > 0) {
+												var form = $(".form")
+														.serialize();
+
+												$
+														.ajax({
+															url : "user/user_I",
+															type : "post",
+															data : form,
+															async : false,
+															success : function(
+																	e) {
+																console.log(e);
+																if (e.success == true) {
+																	
+																	 
+																	
+																	$(".result")
+																			.append(
+																					"<p>"
+																							+ e
+																							+ "</p>");
+																	$(".result")
+																			.css(
+																					"background",
+																					"green");
+																
+																	
+																} else {
+																	
+																}
+
+															}
+
+														});
+											} else {
+												alert("please verify the message");
+											}
+										});
 
 					});
 </script>
@@ -265,6 +307,18 @@
 							style="width: 0%; height: 30px"></div>
 					</div>
 				</div>
+				<div class="col-lg-12 cl">
+					<div class="col-md-4">re-password</div>
+					<div class="col-md-4">
+						<input type="password" style="width: 100%;" class="userpassword1" />
+					</div>
+					<div class="col-md-4 message">
+						<div class="progress-bar progress-bar-success"
+							style="width: 0%; height: 30px"></div>
+					</div>
+				</div>
+
+
 				<div class="col-lg-12 cl">
 					<div class="col-md-4">useremail</div>
 					<div class="col-md-4">
