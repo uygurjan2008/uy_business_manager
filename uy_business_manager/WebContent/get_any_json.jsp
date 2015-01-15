@@ -28,7 +28,7 @@
 				
 				//a = JSON.parse(e);
 				a=e;
-				console.log("var a=get_json(url);",a,"sdsd","sd");
+				console.log("var a=get_json(url);",a);
 			}
 
 		});
