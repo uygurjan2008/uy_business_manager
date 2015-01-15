@@ -50,8 +50,14 @@
 </head>
 <body>
 <div style="margin-left:50px;margin-right:50px;">
-	<input type="text" class="source" placeholder="url with http:// or file://"/>
+	<input type="text" class="source" placeholder="url with http:// "/>
 	<a class="btn btn-default search" >get json</a>
+	<div>how to do with js   
+	<code>
+		var a=get_json(url);/*    url with http://             */
+		
+	</code>
+	</div>
 	<div>result</div>
 	<div class="result"
 		style="width: 100%; height: auto; border: 1px solid;border-radius:10px;">
