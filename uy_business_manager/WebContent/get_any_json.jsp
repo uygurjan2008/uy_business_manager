@@ -15,6 +15,7 @@
 		$.ajax({
 			url : "get_json",
 			type : "post",
+			 dataType:"json",
 			data : {
 				url : url
 			//"http://127.0.0.1:8080/uy_business_manager/admin/get_all_users"
@@ -25,8 +26,9 @@
 				//console.log(e);
 				//a= [e];
 				
-				a = JSON.parse(e);
-				console.log("var a=get_json(url);",a);
+				//a = JSON.parse(e);
+				a=e;
+				console.log("var a=get_json(url);",a,"sdsd","sd");
 			}
 
 		});
