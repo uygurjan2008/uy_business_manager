@@ -3,10 +3,12 @@ package com.uyghur.ruzi.resource;
 import java.net.*; 
 import java.io.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
  
+
 
 
 import net.sf.json.JSONObject;
@@ -30,14 +32,17 @@ public class URLReader {
 	public String URLReader_json() throws Exception {
 		System.out.println("url read "+getUrl());
 		HttpServletResponse response = ServletActionContext.getResponse();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out;
 		out = response.getWriter();
- 
+		
 		URL oracle = new URL(getUrl());
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 				oracle.openStream(),"UTF-8"));
 		
+		System.out.println("in.."+in);
 		String inputLine;
 		String aa ="";
 		while ((inputLine = in.readLine()) != null) {
@@ -48,7 +53,7 @@ public class URLReader {
 		}
 		
 		in.close();
-		System.out.println("ss:" + aa);
+		System.out.println("json:" + aa);
 		
 		
 		 
@@ -90,7 +95,7 @@ public class URLReader {
 		}
 		
 		in.close();
-		System.out.println("ss:" + aa);
+		System.out.println("String:" + aa);
 		
 		
 		 /*

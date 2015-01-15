@@ -26,7 +26,7 @@
 				//a= [e];
 				
 				a = JSON.parse(e);
-				console.log(a)
+				console.log("var a=get_json(url);",a);
 			}
 
 		});
@@ -50,8 +50,8 @@
 </head>
 <body>
 <div style="margin-left:50px;margin-right:50px;">
-	<input type="text" class="source" />
-	<a class="btn btn-default search">get json</a>
+	<input type="text" class="source" placeholder="url with http:// or file://"/>
+	<a class="btn btn-default search" >get json</a>
 	<div>result</div>
 	<div class="result"
 		style="width: 100%; height: auto; border: 1px solid;border-radius:10px;">
