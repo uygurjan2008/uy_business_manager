@@ -20,20 +20,33 @@
 			</result>
 
 		</action>
-		
-		<action name="get_page" class="com.uyghur.ruzi.resource.URLReader" method="URLReader_page">
-			
+
+		<action name="get_page" class="com.uyghur.ruzi.resource.URLReader"
+			method="URLReader_page">
+
 			<result type="json">
 
 			</result>
-			
+
 		</action>
+			
+		<action name="file_upoload" class="com.uyghur.ruzi.resource.File_Upload"
+			 >
+
+			<result type="json">
+
+			</result>
+
+		</action>	
+		
+
 
 
 
 
 
 	</package>
+
 
 
 
@@ -54,7 +67,7 @@
 		</action>
 
 
-		
+
 
 
 
