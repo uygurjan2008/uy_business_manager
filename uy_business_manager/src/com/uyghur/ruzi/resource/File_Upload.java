@@ -5,16 +5,30 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 
 import net.sf.json.JSONObject;
 
 public class File_Upload {
 private String filename;
 private String filepath;
-private static String UPLOAD_DIR="D:/video/upload/";
+private static String UPLOAD_DIR;
+public static String getUPLOAD_DIR() {
+	HttpServletRequest req= ServletActionContext.getRequest();
+	 String dir=ServletActionContext.getServletContext().getInitParameter("upload");
+	
+	 System.out.println("dir"+dir);
+	
+	return dir;
+}
+public static void setUPLOAD_DIR(String uPLOAD_DIR) {
+	UPLOAD_DIR = uPLOAD_DIR;
+}
 public String getFilename() {
 	return filename;
 }
@@ -29,11 +43,19 @@ public void setFilepath(String filepath) {
 }
 public String execute() throws IOException{
 	
-	String uploaddir=UPLOAD_DIR;
+	upload_by_txt();
+	return "succes";
+}
+public String upload_by_txt() throws IOException {
+	System.out.println("getUPLOAD_DIR()"+getUPLOAD_DIR());
+	String uploaddir=getUPLOAD_DIR();
 	System.out.println(getFilename()+","+getFilepath());
+	System.out.println("uploaddir::"+uploaddir);
+	
 	//RandomAccessFile fromFile = new RandomAccessFile("D://video//1.jpg", "rw"); 
     
 	RandomAccessFile fromFile = new RandomAccessFile(getFilepath(), "rw"); 
+	
        FileChannel      fromChannel = fromFile.getChannel(); 
       System.out.println("fromChannel"+fromChannel.toString());
        RandomAccessFile toFile = new RandomAccessFile(uploaddir+getFilename()+".jpg", "rw"); 
@@ -48,7 +70,9 @@ public String execute() throws IOException{
        //jo.put("success", true);
        //jo.put("filename", getFilename());
        //jo.write(arg0)
-       
-	return "succes";
+	
+	return "success";
 }
+
+
 }
