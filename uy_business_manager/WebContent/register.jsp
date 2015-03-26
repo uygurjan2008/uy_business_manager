@@ -31,7 +31,7 @@
 					username : username
 				},
 				success : function(e) {
-					console.log(url, e, e.success);
+					//console.log(url, e, e.success);
 					if (e.success == true) {
 						//alert("user " + username + " already exist");
 						msg = "exist";
@@ -45,7 +45,7 @@
 		} else {
 			msg = "username is empty";
 		}
-		console.log("msg ", msg);
+		//console.log("msg ", msg);
 		return msg;
 
 	}
@@ -66,7 +66,7 @@
 					useremail : useremail
 				},
 				success : function(e) {
-					console.log(url, e, e.success);
+					//console.log(url, e, e.success);
 					if (e.success == true) {
 						//alert("user " + username + " already exist");
 						msg = "exist";
@@ -80,7 +80,7 @@
 		} else {
 			msg = "user email is empty";
 		}
-		console.log("msg ", msg);
+		//console.log("msg ", msg);
 		return msg;
 
 	}
@@ -167,7 +167,7 @@
 										function() {
 
 											result = checkuseremail();
-											console.log("result ", result);
+											//console.log("result ", result);
 											//console.log($(this).parent(),$(this).parent().parent().find(".message").append("<b>"+result+"</b>")); 
 
 											if (result == "exist") {
@@ -251,8 +251,10 @@
 															data : form,
 															async : false,
 															success : function(
-																	e) {
-																console.log(e);
+																	a) {
+																//console.log(a,typeof(a));
+																var e=JSON.parse(a);
+																
 																if (e.success == true) {
 																	
 																	 
@@ -260,8 +262,13 @@
 																	$(".result")
 																			.append(
 																					"<p>"
-																							+ e
-																							+ "</p>");
+																							+ "username:"+e.username
+																							
+																							+" user email:"+ e.useremail
+																							
+																							+" user tel:"+ e.tel
+																							+
+																							"</p>");
 																	$(".result")
 																			.css(
 																					"background",

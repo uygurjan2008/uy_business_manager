@@ -45,6 +45,9 @@
 	$(document).ready(
 			function() {
 
+				
+				/*
+				
 				for ( var i in goods.items) {
 
 					$(".centercontent").append(
@@ -62,18 +65,14 @@
 									+ "<a class='btn btn-danger delete' disabled='disabled'>delete</a>"
 									+ "</div>" + "</div>");
 					
-					//删除随便输入的一些数据
-					/*
-					if(goods.items[i].goodname.length<4){
-						console.log(goods.items[i].goodname,goods.items[i].id);
-						//d(goods.items[i].id);
-					}
-					*/
+				
 					
-					 
+					/* 
 
 				}
-
+		
+				
+				*/
 				
 				$(".edit").click(function(){
 					console.log($(this).parent().parent().find(".id")[0].innerText);
@@ -86,7 +85,9 @@
 
 </head>
 <body>
-
+	<div>
+	<a href="login.jsp">login</a>
+	</div>
 	<div class="all">
 		<div class="left"></div>
 		<div class="center">

@@ -9,7 +9,14 @@
 	<!-- <constant name="struts.action.extension" value="action,do,"></constant> -->
 	<!-- 打开允许动态方法调用的开关, 默认是 false -->
 	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant> -->
-
+	
+	 <constant name="struts.i18n.encoding" value="gb2312"></constant>  
+    <!-- 系统常量定义，定义上传文件临时存放路径 -->  
+    <constant name="struts.multipart.saveDir" value="d:\upload"></constant> 
+	
+	
+	
+<constant name="upload" value="d://video"></constant>
 	<package name="name1" extends="json-default" namespace="/">
 
 
@@ -30,14 +37,20 @@
 
 		</action>
 			
-		<action name="file_upoload" class="com.uyghur.ruzi.resource.File_Upload"
-			 >
+		<action name="file_upoload" class="com.uyghur.ruzi.resource.File_Upload" method="upload">
 
 			<result type="json">
 
 			</result>
 
 		</action>	
+		
+		<action name="uploadd" class="com.uyghur.ruzi.resource.UploadAction" >  
+              
+            <result type="json">
+            </result>  
+        </action>  
+		 
 		
 
 
@@ -52,8 +65,8 @@
 
 	<package name="admin" namespace="/admin" extends="json-default">
 
-		<action name="login" class="com.uyghur.ruzi.adminlogin">
-			<result name="success">/admin/adminhome.jsp</result>
+		<action name="login" class="com.uyghur.ruzi.adminlogin"  >
+			<result name="success">/admin/adminhome/</result>
 			<result name="fail">/admin/login.jsp</result>
 
 		</action>

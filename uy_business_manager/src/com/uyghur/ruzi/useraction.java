@@ -102,8 +102,8 @@ public class useraction {
 		out = response.getWriter();
 
 		userdao ud = new userdao();
-		System.out.println(getUsername()+","+ getUserpassword()+","+
-				getUseremail()+",tel:"+ getTel()+","+ getLoginip()+","+ getGender());
+		//System.out.println(getUsername()+","+ getUserpassword()+","+
+		//		getUseremail()+",tel:"+ getTel()+","+ getLoginip()+","+ getGender());
 		boolean ad = ud.user_insert(getUsername(), getUserpassword(),
 				getUseremail(), getTel(), getLoginip(), getGender());
 		
