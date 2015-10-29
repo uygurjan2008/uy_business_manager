@@ -28,9 +28,7 @@ public class Dbdriver {
 			username= prop.getProperty("jdbc.username");
 			password = prop.getProperty("jdbc.password");
 			conn = DriverManager.getConnection(url, username, password);
-			//conn=DriverManager.getConnection("jdbc:mysql://sql4.ihostwell.com/db=u103442047_users","u103442047_root","rm041690416");
-			//String uuString="http://sql4.ihostwell.com/db=u103442047_users&lang=zh_CN";
-			 
+		
 			
 		} catch (Exception e) {
 			e.printStackTrace();
